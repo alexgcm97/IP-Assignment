@@ -1,7 +1,7 @@
 <?php
 
-include '../Model/Database.php';
-include '../Model/product.php';
+require '../Model/Database.php';
+require '../Model/product.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,7 +12,6 @@ include '../Model/product.php';
  *
  * @author Chun Ming
  */
-
 $date = date('F Y');
 
 $db = Database::getInstance();
@@ -26,6 +25,8 @@ $dom = new DOMDocument();
 if (file_exists("../xml/OrderCatalog.xml")) {
     $dom->load("../xml/OrderCatalog.xml");
 } else {
+    $xslt = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="OrderCatalog.xsl"');
+    $dom->appendChild($xslt);
     $dom->appendChild($dom->createElement("OrderCatalog"));
 }
 $root = $dom->documentElement;

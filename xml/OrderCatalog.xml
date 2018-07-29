@@ -1,34 +1,34 @@
-
 <?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="OrderCatalog.xsl"?>
 <OrderCatalog>
-    <product>
-        <id>10001</id>
-        <name>Aconitum</name>
-        <description>1 unit, Monthly Sales</description>
-        <price>3</price>
-    </product>
-    <product>
-        <id>10003</id>
-        <name>Bellflower</name>
-        <description>1 unit, Monthly Sales</description>
-        <price>3</price>
-    </product>
-    <product>
-        <id>10005</id>
-        <name>Bluebell</name>
-        <description>1 unit, Monthly Sales</description>
-        <price>3</price>
-    </product>
-    <product>
-        <id>10007</id>
-        <name>Aconitum</name>
-        <description>Bounquet - 10</description>
-        <price>40</price>
-    </product>
-    <product>
-        <id>10009</id>
-        <name>Sunset Roses</name>
-        <description>Mother Day</description>
-        <price>40</price>
-    </product>
+  <product>
+    <id>10001</id>
+    <name>Aconitum</name>
+    <description>1 unit, Monthly Sales</description>
+    <price>3</price>
+  </product>
+  <product>
+    <id>10003</id>
+    <name>Bellflower</name>
+    <description>1 unit, Monthly Sales</description>
+    <price>3</price>
+  </product>
+  <product>
+    <id>10005</id>
+    <name>Bluebell</name>
+    <description>1 unit, Monthly Sales</description>
+    <price>3</price>
+  </product>
+  <product>
+    <id>10007</id>
+    <name>Aconitum</name>
+    <description>Bounquet - 10</description>
+    <price>40</price>
+  </product>
+  <product>
+    <id>10009</id>
+    <name>Sunset Roses</name>
+    <description>Mother Day</description>
+    <price>40</price>
+  </product>
 </OrderCatalog>
