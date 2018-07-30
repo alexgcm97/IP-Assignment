@@ -16,7 +16,6 @@ and open the template in the editor.
         <title>Order Page</title>
         <?php
         require '../Model/Orders.php';
-        require '../Model/Database.php';
         require '../Model/product.php';
         require '../Controller/generateOrderCatalog.php';
         require '../Controller/processOrder.php';

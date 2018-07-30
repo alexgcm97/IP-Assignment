@@ -6,43 +6,42 @@
 
 class Database {
 
-    private $_connection;
-    private static $_instance; //The single instance
-    private $_host = "localhost";
-    private $_username = "root";
-    private $_password = "";
-    private $_database = "flower";
+    protected static $instance;
 
-    /*
-      Get an instance of the Database
-      @return Instance
-     */
-
-    public static function getInstance() {
-        if (!self::$_instance) { // If no instance then make one
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
-
-    // Constructor
-    private function __construct() {
-        $this->_connection = new mysqli($this->_host, $this->_username, $this->_password, $this->_database);
-
-        // Error handling
-        if (mysqli_connect_error()) {
-            trigger_error("Failed to conencto to MySQL: " . mysql_connect_error(), E_USER_ERROR);
-        }
-    }
-
-    // Magic method clone is empty to prevent duplication of connection
-    private function __clone() {
+    protected function __construct() {
         
     }
 
-    // Get mysqli connection
-    public function getConnection() {
-        return $this->_connection;
+    public static function getInstance() {
+        if (empty(self::$instance)) {
+            $db_info = array(
+                "db_host" => "localhost",
+                "db_port" => "3306",
+                "db_user" => "root",
+                "db_pass" => "",
+                "db_name" => "flower",
+                "db_charset" => "UTF-8");
+            try {
+                self::$instance = new PDO("mysql:host=" . $db_info['db_host'] . ';port=' . $db_info['db_port'] . ';dbname=' . $db_info['db_name'], $db_info['db_user'], $db_info['db_pass']);
+                self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
+                self::$instance->query('SET NAMES utf8');
+                self::$instance->query('SET CHARACTER SET utf8');
+            } catch (PDOException $error) {
+                echo $error->getMessage();
+            }
+        }
+        return self::$instance;
+    }
+
+    public static function setCharsetEncoding() {
+        if (self::$instance == null) {
+            self::connect();
+        }
+        self::$instance->exec(
+                "SET NAMES 'utf8';
+			SET character_set_connection=utf8;
+			SET character_set_client=utf8;
+			SET character_set_results=utf8");
     }
 
 }

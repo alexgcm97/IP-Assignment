@@ -12,13 +12,15 @@
  * @author Teck Siong
  */
 class pdt_catalog {
-    private $catalogID, $productID;
 
-    function __construct($catalogID, $productID) {
+    private $catalogID, $productID, $type;
+
+    function __construct($catalogID, $productID, $type) {
         $this->catalogID = $catalogID;
         $this->productID = $productID;
+        $this->type = type;
     }
-    
+
     function getCatalogID($catalogID) {
         return $this->$catalogID;
     }
@@ -35,5 +37,12 @@ class pdt_catalog {
         $this->productID = $value;
     }
 
+    function getType() {
+        return $this->type;
+    }
+
+    function setType($type) {
+        $this->type = $type;
+    }
 
 }

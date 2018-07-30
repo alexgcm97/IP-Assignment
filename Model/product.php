@@ -13,14 +13,15 @@
  */
 class product {
 
-    private $productID, $name, $description, $price, $stock;
-    
-    function __construct($productID, $name, $description, $price, $stock) {
+    private $productID, $name, $description, $price, $stock, $status;
+
+    function __construct($productID, $name, $description, $price, $stock, $status) {
         $this->productID = $productID;
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
         $this->stock = $stock;
+        $this->status = $status;
     }
 
     function getProductID() {
@@ -61,6 +62,14 @@ class product {
 
     function setStock($stock) {
         $this->stock = $stock;
+    }
+
+    function getStatus() {
+        return $this->status;
+    }
+
+    function setStatus($status) {
+        $this->status = $status;
     }
 
 }
