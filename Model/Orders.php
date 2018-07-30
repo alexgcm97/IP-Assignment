@@ -102,6 +102,10 @@ class Orders extends AbstractSubject {
         return $this->odList;
     }
 
+    function clearODList() {
+        unset($odList);
+    }
+
     function removeODFromList($productID) {
         for ($i = 0; $i < sizeof($this->odList); $i++) {
             if (strcmp($this->odList[$i]->getProductID(), $productID) == 0) {

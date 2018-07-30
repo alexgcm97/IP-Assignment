@@ -27,9 +27,12 @@ and open the template in the editor.
             session_start();
         }
         ?>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
     </head>
 
     <body style="margin:auto;width:55%;margin-top:30px;">
+        <script type="text/javascript" src="../js/materialize.min.js"></script>
         <div style="float:left;margin-right:20px;margin-top:30px;">
             <table border="1" width="680px" style="border-bottom:0" >
                 <tr>
@@ -46,42 +49,44 @@ and open the template in the editor.
                 </table>
             </div>
         </div>
-        <div style="float:right;width:30%">
+        <div style="float:right;width:30%;height:500px">
             <b><span style="text-decoration: underline;">Order Cart</span></b>
-            <table style='margin-top:10px;width:450px' border="1">
+            <table style='margin-top:10px;width:520px;' border="1">
                 <tr>
-                    <th style="width:10%">No.</th>
-                    <th style="width:45%">Product</th>
-                    <th style="width:20%">Qty</th>
-                    <th style="width:25%">Total Amount (RM)</th>
+                    <th style="width:5%;text-align:center">No.</th>
+                    <th style="width:50%;text-align:center">Product</th>
+                    <th style="width:20%;text-align:center">Qty</th>
+                    <th style="width:30%;text-align:center">Total Amount (RM)</th>
                 </tr>
             </table>
 
 
             <?php
-            echo "<div style='height:520px;width:470px;overflow-y:auto;'>" .
-            "<table style='table-layout: fixed' border='1'maxheight='480px' width='450px' >";
-            if (isset($_POST['add']) || isset($_POST['update']) || isset($_POST['delete'])) {
+            echo "<div style='height:490px;width:520px;overflow-y:auto;'>" .
+            "<table border='1'maxheight='480px' width='500px' >";
+            if (isset($_POST['add']) || isset($_POST['update']) || isset($_POST['delete']) || isset($_POST['clear'])) {
                 processOrder();
             } else {
                 echo "<tr style='height:480px'>"
                 . "<td style='width:10%'></td>"
                 . "<td style='width:45%'></td>"
-                . "<td style='width:20%'></td>"
                 . "<td style='width:25%'></td>"
+                . "<td style='width:30%'></td>"
                 . "</tr>";
             }
             echo "</table></div>";
+
             $order = $_SESSION['order'];
             $observer = new OrdersObserver();
             $order->attach($observer);
             $order->notify();
             $grandTotal = $order->getGrandTotal();
-            echo "<h2 style='float:right'>Total Amount : RM $grandTotal</h2>";
+            echo "<form action='orderPage.php' method='post'>";
+            echo "<input type='submit' name='clear' value='Clear Cart' class='btn blue-grey' style='margin-top:10px;margin-left:300px;width:200px'/></form>";
+            echo "<h2 style='text-align:right;width:500px'>Total Amount : <br/>RM " . number_format($grandTotal, 2, ".", ",") . "</h2>";
             ?>
-
             <form action="../index.php" method="post">
-                <input type="submit" name="submitOrder" value="Submit Order" style="margin-left:20px;width:400px;height:50px;font-size:25px;"/>
+                <input type="submit" name="submitOrder" value="Submit Order" class="btn blue" style="margin-left:50px;width:450px;height:50px;font-size:25px;"/>
             </form>
         </div>
     </body>

@@ -50,10 +50,10 @@ function generateCatalog() {
             echo "<td style='padding:5px 0 10px 0;width:20%;text-align:center'>";
             if ($status == 1) {
                 echo "<label for='quantity'>Qty: </label>"
-                . "<input type='text' name='quantity' style='width:30px;margin-bottom:10px'/><br/>"
-                . "<input type = 'submit' name = 'add' value = 'Add to Cart'/> </td>";
+                . "<input type='text' name='quantity' style='width:30px;margin-bottom:10px;text-align:center'/><br/>"
+                . "<input type = 'submit' class='btn-small waves-light' name = 'add' value = 'Add to Cart'/> </td>";
             } else {
-                echo "Sorry.<br/>Out of Stock.";
+                echo "<span>Sorry.<br/>Out of Stock.</span>";
             }
             echo "</tr></form>";
             $position ++;
@@ -84,10 +84,10 @@ function generateCatalog() {
             echo "<td style='padding:5px 0 10px 0;width:20%;text-align:center'>";
             if ($status == 1) {
                 echo "<label for='quantity'>Qty: </label>"
-                . "<input type='text' name='quantity' style='width:30px;margin-bottom:10px'/><br/>"
-                . "<input type = 'submit' name = 'add' value = 'Add to Cart'/> </td>";
+                . "<input type='text' name='quantity' style='width:30px;margin-bottom:10px;text-align:center'/><br/>"
+                . "<input type = 'submit' class='btn-small waves-light' name = 'add' value = 'Add to Cart'/> </td>";
             } else {
-                echo "Sorry.<br/>Out of Stock.";
+                echo "<span>Sorry.<br/>Out of Stock.</span>";
             }
             echo "</tr></form>";
             $position ++;
@@ -118,10 +118,10 @@ function generateCatalog() {
             echo "<td style='padding:5px 0 10px 0;width:20%;text-align:center'>";
             if ($status == 1) {
                 echo "<label for='quantity'>Qty: </label>"
-                . "<input type='text' name='quantity' style='width:30px;margin-bottom:10px'/><br/>"
-                . "<input type = 'submit' name = 'add' value = 'Add to Cart'/> </td>";
+                . "<input type='text' name='quantity' style='width:30px;margin-bottom:10px;text-align:center'/><br/>"
+                . "<input type = 'submit' class='btn-small waves-light' name = 'add' value = 'Add to Cart'/> </td>";
             } else {
-                echo "Sorry.<br/>Out of Stock.";
+                echo "<span>Sorry.<br/>Out of Stock.</span>";
             }
             echo "</tr></form>";
             $position ++;

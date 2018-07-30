@@ -13,7 +13,9 @@ function getSessionOrder() {
 function processOrder() {
 // put your code here
     $order = getSessionOrder();
-    $productID = $_POST['id'];
+    if (isset($_POST['id'])) {
+        $productID = $_POST['id'];
+    }
     if (isset($_POST['update'])) {
         if (!empty($_POST['newQty'])) {
             $newQty = $_POST['newQty'];
@@ -51,6 +53,8 @@ function processOrder() {
         } else {
             echo '<script type="text/javascript">alert("Invalid Quantity Input.");</script>';
         }
+    } elseif (isset($_POST['clear'])) {
+        $order->clearODList();
     }
     updateOrderCart();
 }
@@ -66,18 +70,17 @@ function updateOrderCart() {
             $name = $od->getName();
             $description = $od->getDescription();
             $quantity = $od->getQuantity();
-            $price = $od->getPrice();
             $totalAmount = $od->getTotalAmount();
             echo "<form action='orderPage.php' method='post'>"
             . "<tr style='text-align:center;'>"
             . "<td style='width:10%;height:90px'>$index</td>"
             . "<td style='width:45%'>$name<br/>$description</td>"
-            . "<td style='width:20%'>"
+            . "<td style='width:20%;text-align:center'>"
             . "<input type='hidden' name='id' value='$productID'/>"
             . "<input type='number' name='newQty' value='$quantity' style='width:50px;text-align:center;vertical-align:middle'/> "
             . "<button type='submit' name='update' style='margin-left:-5px;width:20px;background:transparent;border:none;'><img src='../img/update.png' style='height:15px;width:15px;vertical-align:middle;'/></button>"
-            . "<br/><input type='submit' name='delete' value='Remove' style='margin-top:5px'/></td>"
-            . "<td style='width:25%'>" . sprintf('%.2f', $totalAmount) . "</td>"
+            . "<br/><input type='submit' class='btn-small pink' name='delete' value='Remove' style='margin-top:5px;margin-left:0px'/></td>"
+            . "<td style='width:25%;text-align:center'>" . sprintf('%.2f', $totalAmount) . "</td>"
             . "</tr></form>";
             $index++;
         }
