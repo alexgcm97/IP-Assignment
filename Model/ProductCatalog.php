@@ -7,11 +7,11 @@
  */
 
 /**
- * Description of pdt_catalog
+ * Description of catalog
  *
- * @author Teck Siong
+ * @author Chun Ming
  */
-class pdt_catalog {
+class ProductCatalog {
 
     private $catalogID, $productID, $type;
 

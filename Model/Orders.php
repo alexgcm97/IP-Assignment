@@ -12,8 +12,9 @@
  * @author Chun Ming
  */
 require '../Model/OrderDetails.php';
+require 'OrdersObserver.php';
 
-class Orders {
+class Orders extends AbstractSubject {
 
     private $orderID, $orderDate, $custID, $orderType, $shipAddress, $shipDate, $shipTime, $grandTotal;
     private $odList = array();
@@ -115,6 +116,24 @@ class Orders {
             if (strcmp($od->getProductID(), $productID) == 0) {
                 return true;
             }
+        }
+    }
+
+    public function attach(AbstractObserver $observer_in) {
+        $this->observers[] = $observer_in;
+    }
+
+    public function detach(AbstractObserver $observer_in) {
+        foreach ($this->observers as $okey => $oval) {
+            if ($oval == $observer_in) {
+                unset($this->observers[$okey]);
+            }
+        }
+    }
+
+    public function notify() {
+        foreach ($this->observers as $obs) {
+            $obs->update($this);
         }
     }
 

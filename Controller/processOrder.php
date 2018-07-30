@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Description of order
+ *
+ * @author Chun Ming
+ */
 function getSessionOrder() {
     $order = $_SESSION['order'];
     return $order;
@@ -63,7 +68,6 @@ function updateOrderCart() {
             $quantity = $od->getQuantity();
             $price = $od->getPrice();
             $totalAmount = $od->getTotalAmount();
-            $grandTotal = (double) $grandTotal + (double) $totalAmount;
             echo "<form action='orderPage.php' method='post'>"
             . "<tr style='text-align:center;'>"
             . "<td style='width:10%;height:90px'>$index</td>"

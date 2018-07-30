@@ -8,6 +8,11 @@ require "Database.php";
  * and open the template in the editor.
  */
 
+/**
+ * Description of order
+ *
+ * @author Chun Ming
+ */
 function retrieveCatalog() {
     try {
         $db = Database::getInstance();

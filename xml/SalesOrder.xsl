@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : OrderCatalog.xsl
+    Document   : SalesOrder.xsl
     Created on : July 29, 2018, 12:22 PM
-    Author     : Alex
+    Author     : Chun Ming
     Description:
         Purpose of transformation follows.
 -->

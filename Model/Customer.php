@@ -9,7 +9,7 @@
 /**
  * Description of customer
  *
- * @author Jun Kit
+ * @author Chun Ming
  */
 class Customer {
 

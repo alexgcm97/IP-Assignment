@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Description of order
+ *
+ * @author Chun Ming
+ */
 require "../Model/OrdersCall.php";
 
 function generateCatalog() {

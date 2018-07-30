@@ -1,7 +1,5 @@
 <?php
 
-require '../Model/Database.php';
-require '../Model/product.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,6 +10,8 @@ require '../Model/product.php';
  *
  * @author Chun Ming
  */
+require '../Model/Database.php';
+require '../Model/product.php';
 $date = date('F Y');
 
 $db = Database::getInstance();

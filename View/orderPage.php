@@ -16,7 +16,7 @@ and open the template in the editor.
         <title>Order Page</title>
         <?php
         require '../Model/Orders.php';
-        require '../Model/product.php';
+        require '../Model/Product.php';
         require '../Controller/generateOrderCatalog.php';
         require '../Controller/processOrder.php';
 
@@ -73,6 +73,9 @@ and open the template in the editor.
             }
             echo "</table></div>";
             $order = $_SESSION['order'];
+            $observer = new OrdersObserver();
+            $order->attach($observer);
+            $order->notify();
             $grandTotal = $order->getGrandTotal();
             echo "<h2 style='float:right'>Total Amount : RM $grandTotal</h2>";
             ?>
