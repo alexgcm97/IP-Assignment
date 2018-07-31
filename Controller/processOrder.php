@@ -5,14 +5,10 @@
  *
  * @author Chun Ming
  */
-function getSessionOrder() {
-    $order = $_SESSION['order'];
-    return $order;
-}
-
 function processOrder() {
 // put your code here
-    $order = getSessionOrder();
+    $order = $_SESSION['order'];
+    $customer = $_SESSION['customer'];
     if (isset($_POST['id'])) {
         $productID = $_POST['id'];
     }
@@ -60,11 +56,19 @@ function processOrder() {
 }
 
 function updateOrderCart() {
-    $order = getSessionOrder();
+    $order = $_SESSION['order'];
+    $customer = $_SESSION['customer'];
+    $observer = new OrdersObserver();
+    $order->attach($observer);
+    $order->notify();
+    $remaining = $customer->getCreditBalance() - $order->getGrandTotal();
 
-    if (!empty($order->getAllOD())) {
+    if ($customer->getCustType() == 2 && $remaining < 0) {
+        $order->clearODList();
+        $order->setGrandTotal(0);
+        echo '<script type="text/javascript">alert("Your order has exceeded your credit balance. Order cart is cleared.");</script>';
+    } else {
         $index = 1;
-        $grandTotal = 0;
         foreach ($order->getAllOD() as $od) {
             $productID = $od->getProductID();
             $name = $od->getName();
@@ -74,8 +78,8 @@ function updateOrderCart() {
             echo "<form action='orderPage.php' method='post'>"
             . "<tr style='text-align:center;height:70px'>"
             . "<td style='width:10%'>$index</td>"
-            . "<td style='width:40%;word-wrap:break-word;'>$name<br/>$description</td>"
-            . "<td style='width:30%;'>"
+            . "<td style='width:40%;word-wrap:break-word;'><span style='font-size:16px; font-style: oblique;'><b>$name</b></span><br/>$description</td>"
+            . "<td style='width:30%;text-align:center'>"
             . "<input type='hidden' name='id' value='$productID'/>"
             . "<input type='number' name='newQty' value='$quantity' style='width:50px;text-align:center;vertical-align:middle'/> "
             . "<button type='submit' name='update' style='margin-left:-5px;width:20px;background:transparent;border:none;'><img src='../img/update.png' style='height:15px;width:15px;vertical-align:middle;'/></button>"
@@ -84,7 +88,6 @@ function updateOrderCart() {
             . "</tr></form>";
             $index++;
         }
-        $order->setGrandTotal($grandTotal);
     }
 }
 

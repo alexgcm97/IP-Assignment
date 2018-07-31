@@ -15,17 +15,18 @@ class Customer {
 
     //put your code here
 
-    private $custID, $custType, $custName, $custEmail, $creditLimit, $creditStatus;
+    private $custID, $custType, $custName, $custEmail, $creditLimit, $creditBalance, $creditStatus;
 
-    function __construct($custID, $custType, $custName, $custEmail, $creditLimit, $creditStatus) {
+    function __construct($custID, $custType, $custName, $custEmail, $creditLimit, $creditBalance, $creditStatus) {
         $this->custID = $custID;
         $this->custType = $custType;
         $this->custName = $custName;
         $this->custEmail = $custEmail;
         $this->creditLimit = $creditLimit;
+        $this->creditBalance = $creditBalance;
         $this->creditStatus = $creditStatus;
     }
-    
+
     function getCustID() {
         return $this->custID;
     }
@@ -44,6 +45,10 @@ class Customer {
 
     function getCreditLimit() {
         return $this->creditLimit;
+    }
+
+    function getCreditBalance() {
+        return $this->creditBalance;
     }
 
     function getCreditStatus() {
@@ -70,7 +75,12 @@ class Customer {
         $this->creditLimit = $creditLimit;
     }
 
+    function setCreditBalance($creditBalance) {
+        $this->creditBalance = $creditBalance;
+    }
+
     function setCreditStatus($creditStatus) {
         $this->creditStatus = $creditStatus;
     }
+
 }

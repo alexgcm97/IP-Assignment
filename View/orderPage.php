@@ -15,24 +15,29 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Order Page</title>
         <?php
+        require '../Controller/getSessionData.php';
         require '../Model/Product.php';
         require '../Controller/generateOrderCatalog.php';
         require '../Controller/processOrder.php';
-        require '../Controller/getSessionOrder.php';
-
-
-        /* if (!isset($_POST['add']) && !isset($_POST['update']) && !isset($_POST['delete'])) {
-          session_start();
-          $_SESSION['order'] = new Orders('1001', null, null, null, null, null, null, 0);
-          } else {
-          session_start();
-          } */
+        if (session_id() == '' || !isset($_SESSION)) {
+            // session isn't started
+            startSession();
+        }
+        if (empty($_SESSION['customer']->getCustID())) {
+            header("Location: ../View/index.php?err=1");
+        }
         ?>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+        <style>
+            input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        </style>
     </head>
 
-    <body style="margin:auto;width:80%;margin-top:30px;">
+    <body style="margin:auto;width:70%;margin-top:30px">
         <script type="text/javascript" src="../js/materialize.min.js"></script>
         <div>
             <form action="index.php">
@@ -45,8 +50,8 @@ and open the template in the editor.
             <table border="1" width="600px" style="border-bottom:0" >
                 <tr>
                     <th style="width:5%;text-align:center">No.</th>
-                    <th style="padding:10px 10px 10px 10px;width:70%">Product</th>
-                    <th style="padding:10px 10px 10px 10px;width:20%">Action</th>
+                    <th style="padding:10px 10px 10px 10px;width:65%">Product</th>
+                    <th style="padding:10px 10px 10px 10px;width:25%">Action</th>
                 </tr>
             </table>
             <div style='height:430px;width:650px;overflow-y:auto;'>
@@ -57,9 +62,9 @@ and open the template in the editor.
                 </table>
             </div>
         </div>
-        <div style="float:right;height:450px;width:500px;margin-top:-15px   ">
+        <div style="float:right;height:450px;width:550px;margin-top:-15px">
             <b><span style="text-decoration: underline;">Order Cart</span></b>
-            <table style='width:450px' border="1">
+            <table style='width:500px'border="1">
                 <tr>
                     <th style="width:5%;">No.</th>
                     <th style="width:50%;">Product</th>
@@ -70,31 +75,42 @@ and open the template in the editor.
 
 
             <?php
-            echo "<div style='height:430px;width:480px;overflow-y:auto;'>" .
-            "<table border='1'maxheight='400px' width='450px' style='table-layout:fixed'>";
+            $order = $_SESSION['order'];
+            $customer = $_SESSION['customer'];
+
+            echo "<div style='height:470px;width:500px;overflow-y:auto;'>" .
+            "<table border='1'maxheight='470px' width='470px' style='table-layout:fixed'>";
+
             if (isset($_POST['add']) || isset($_POST['update']) || isset($_POST['delete']) || isset($_POST['clear'])) {
                 processOrder();
             } else {
-                echo "<tr style='height:400px'>"
-                . "<td style='width:10%'></td>"
-                . "<td style='width:40%'></td>"
-                . "<td style='width:30%'></td>"
-                . "<td style='width:30%'></td>"
-                . "</tr>";
+                if (empty($order->getAllOD())) {
+                    echo "<tr style='height:430px'>"
+                    . "<td style='width:10%'></td>"
+                    . "<td style='width:40%'></td>"
+                    . "<td style='width:30%'></td>"
+                    . "<td style='width:30%'></td>"
+                    . "</tr>";
+                } else {
+                    updateOrderCart();
+                }
             }
             echo "</table></div>";
 
-            $order = $_SESSION['order'];
-            $observer = new OrdersObserver();
-            $order->attach($observer);
-            $order->notify();
             $grandTotal = $order->getGrandTotal();
             echo "<form action='orderPage.php' method='post'>";
-            echo "<input type='submit' name='clear' value='Clear Cart' class='btn blue-grey' style='margin:10px 0px 5px 250px;width:200px'/></form>";
-            echo "<h4 style='text-align:right;width:450px;'>Total Amount : RM" . number_format($grandTotal, 2, ".", ",") . "</h4>";
+            echo "<input type='submit' name='clear' value='Clear Cart' class='btn blue-grey' style='margin:30px 0px 5px 300px;width:200px'/></form>";
+            if ($customer->getCustType() == 2) {
+                $creditBalance = $customer->getCreditBalance();
+                $remaining = (double) $creditBalance - (double) $grandTotal;
+                if ($remaining >= 0) {
+                    echo "<h5 style='text-align:right;width:500px;'>Remaining Credit Balance : RM" . number_format($remaining, 2, ".", ",") . "</h4>";
+                }
+            }
+            echo "<h4 style='text-align:right;width:500px;'>Total Amount : RM" . number_format($grandTotal, 2, ".", ",") . "</h4>";
             ?>
-            <form action="../index.php" method="post">
-                <input type="submit" name="submitOrder" value="Submit Order" class="btn blue" style="margin-left:50px;width:400px;height:50px;font-size:25px;"/>
+            <form action="../View/orderConfirm.php" method="post">
+                <input type="submit" name="submitOrder" value="Submit Order" class="btn blue" style="width:500px;height:50px;font-size:25px;margin-top:30px"/>
             </form>
         </div>
     </body>

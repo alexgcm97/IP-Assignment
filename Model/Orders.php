@@ -16,14 +16,14 @@ require 'OrdersObserver.php';
 
 class Orders extends AbstractSubject {
 
-    private $orderID, $orderDate, $custID, $orderType, $shipAddress, $shipDate, $shipTime, $grandTotal;
+    private $orderID, $orderDate, $custID, $shipMethod, $shipAddress, $shipDate, $shipTime, $grandTotal;
     private $odList = array();
 
-    function __construct($orderID, $orderDate, $custID, $orderType, $shipAddress, $shipDate, $shipTime, $grandTotal) {
+    function __construct($orderID, $orderDate, $custID, $shipMethod, $shipAddress, $shipDate, $shipTime, $grandTotal) {
         $this->orderID = $orderID;
         $this->orderDate = $orderDate;
         $this->custID = $custID;
-        $this->orderType = $orderType;
+        $this->shipMethod = $shipMethod;
         $this->shipAddress = $shipAddress;
         $this->shipDate = $shipDate;
         $this->shipTime = $shipTime;
@@ -42,8 +42,8 @@ class Orders extends AbstractSubject {
         return $this->custID;
     }
 
-    function getOrderType() {
-        return $this->orderType;
+    function getShipMethod() {
+        return $this->shipMethod;
     }
 
     function getShipAddress() {
@@ -70,8 +70,8 @@ class Orders extends AbstractSubject {
         $this->custID = $custID;
     }
 
-    function setOrderType($orderType) {
-        $this->orderType = $orderType;
+    function setShipMethod($shipMethod) {
+        $this->shipMethod = $shipMethod;
     }
 
     function setShipAddress($shipAddress) {
