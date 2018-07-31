@@ -18,7 +18,7 @@ class Database {
                 "db_host" => "localhost",
                 "db_port" => "3306",
                 "db_user" => "root",
-                "db_pass" => "",
+                "db_pass" => "flower",
                 "db_name" => "flower",
                 "db_charset" => "UTF-8");
             try {

@@ -4,7 +4,7 @@
  *
  * @author Chun Ming
  */
-require "../Model/OrdersCall.php";
+require "../Model/OrdersDB.php";
 
 function generateCatalog() {
 
@@ -40,7 +40,7 @@ function generateCatalog() {
             if ($position == 1) {
                 echo "<tr><th colspan='3'>Monthly Item</th></tr>";
             }
-            echo "<tr style='height:90px'>";
+            echo "<tr style='height:70px'>";
             echo "<td style='width:5%;text-align:center'> $position </td>";
             echo "<input type='hidden' value='$name' name='name'/>"
             . "<input type='hidden' value='$id' name='id'/>"

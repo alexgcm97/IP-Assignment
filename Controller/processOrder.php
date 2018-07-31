@@ -72,14 +72,14 @@ function updateOrderCart() {
             $quantity = $od->getQuantity();
             $totalAmount = $od->getTotalAmount();
             echo "<form action='orderPage.php' method='post'>"
-            . "<tr style='text-align:center;'>"
-            . "<td style='width:10%;height:90px'>$index</td>"
-            . "<td style='width:45%'>$name<br/>$description</td>"
-            . "<td style='width:20%;text-align:center'>"
+            . "<tr style='text-align:center;height:70px'>"
+            . "<td style='width:10%'>$index</td>"
+            . "<td style='width:40%;word-wrap:break-word;'>$name<br/>$description</td>"
+            . "<td style='width:30%;'>"
             . "<input type='hidden' name='id' value='$productID'/>"
             . "<input type='number' name='newQty' value='$quantity' style='width:50px;text-align:center;vertical-align:middle'/> "
             . "<button type='submit' name='update' style='margin-left:-5px;width:20px;background:transparent;border:none;'><img src='../img/update.png' style='height:15px;width:15px;vertical-align:middle;'/></button>"
-            . "<br/><input type='submit' class='btn-small pink' name='delete' value='Remove' style='margin-top:5px;margin-left:0px'/></td>"
+            . "<br/><input type='submit' class='btn-small pink' name='delete' value='Remove' style='margin-top:5px;margin-left:0px;font-size:12px'/></td>"
             . "<td style='width:25%;text-align:center'>" . sprintf('%.2f', $totalAmount) . "</td>"
             . "</tr></form>";
             $index++;
