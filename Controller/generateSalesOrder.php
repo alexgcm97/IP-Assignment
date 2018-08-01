@@ -22,12 +22,12 @@ $result = $mysqli->query($sql_query);
 $row = mysqli_fetch_row($result);
 
 $dom = new DOMDocument();
-if (file_exists("../xml/OrderCatalog.xml")) {
-    $dom->load("../xml/OrderCatalog.xml");
+if (file_exists("../xml/SalesOrder.xml")) {
+    $dom->load("../xml/SalesOrder.xml");
 } else {
-    $xslt = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="OrderCatalog.xsl"');
+    $xslt = $dom->createProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="SalesOrder.xsl"');
     $dom->appendChild($xslt);
-    $dom->appendChild($dom->createElement("OrderCatalog"));
+    $dom->appendChild($dom->createElement("SalesOrder"));
 }
 $root = $dom->documentElement;
 while ($root->hasChildNodes()) {
@@ -66,5 +66,5 @@ for ($i = 0; $i < sizeof($productList); $i++) {
 
 $dom->preserveWhiteSpace = false;
 $dom->formatOutput = true;
-$dom->save('../xml/OrderCatalog.xml');
+$dom->save('../xml/SalesOrder.xml');
 ?>

@@ -37,6 +37,8 @@ and open the template in the editor.
                 var pTime = document.getElementById("pTime");
                 var pDate = document.getElementById("pDate");
                 var shipDate = document.getElementById("shipDate");
+                var credit = document.getElementById("credit");
+                var creditText = document.getElementById("creditText");
 
                 shipDate.style.display = "block";
                 if (deliver.checked) {
@@ -53,6 +55,11 @@ and open the template in the editor.
                     dDate.style.display = "none";
                     pTime.style.display = "inline";
                     pDate.style.display = "inline";
+                }
+                if (credit.checked) {
+                    creditText.style.display = "block";
+                } else {
+                    creditText.style.display = "none";
                 }
 
             }
@@ -83,6 +90,14 @@ and open the template in the editor.
                     // put your code here
                     echo "<div class='row'><div class='col s6'><label for='custID'>Customer ID:<input type='text' name='custID' value='$custID' readonly='readonly'/></label></div>"
                     . "<div class='col s6'><label for='custName'>Customer Name:<input type='text' name='custName' value='$custName'/></label></div></div>";
+
+                    if ($custType == 2) {
+                        echo "<div class='row'><div class='col s3'>";
+                        echo "<label for='payMethod'>Payment Method: </label></div>"
+                        . "<div class='col s2'><label><input type='radio' name='payMethod' value='1' onclick='ShowHideDiv()' checked required/><span style='color:black'>Cash</span></label></div>"
+                        . "<div class='col s2'><label><input type='radio' name='payMethod' id='credit' value='2' onclick='ShowHideDiv()'/><span style='color:black'>Credit</span></label></div>";
+                        echo "</div>";
+                    }
                     ?>
                     <div class="row">
                         <div class="col s3">
@@ -95,15 +110,9 @@ and open the template in the editor.
                                 <input type="radio" name="shipMethod" value="1" onclick='ShowHideDiv()' checked required/><span style="color:black">Pick-up</span>
                             </label>
                         </div>
-                        <?php
-                        $grandTotal = $order->getGrandTotal();
-                        if ($grandTotal < 30) {
-                            echo " <span style='text-align:right'>*Minimum order of RM30 is required for delivery.</span>";
-                        }
-                        ?>
                         <div class = "col s2">
                             <label>
-                                <input type = "radio" name = "shipMethod" id = 'deliver' value = "2" onclick = 'ShowHideDiv()'required /><span style = "color:gray" >Delivery</span>
+                                <input type = "radio" name = "shipMethod" id = 'deliver' value = "2" onclick = 'ShowHideDiv()'required /><span style = "color:black" >Delivery</span>
                             </label>
                         </div>
 
@@ -148,7 +157,7 @@ and open the template in the editor.
                     </div>
 
                     <?php
-                    echo "<div class = 'row'><div class='col s6'>";
+                    echo "<div class = 'row' id='creditText' style='display:none'><div class='col s6'>";
                     if ($custType == 2) {
                         $creditBalance = $customer->getCreditBalance();
                         $remaining = $_POST['remaining'];

@@ -51,12 +51,15 @@ and open the template in the editor.
                 $db->insertOD($od);
             }
             if ($customer->getCustType() == 2) {
-                $remaining = $_POST['remaining'];
-                if ($remaining == 0) {
+                $payMethod = $_POST['payMethod'];
+                if ($payMethod == 2) {
+                    $remaining = $_POST['remaining'];
                     $customer->setCreditBalance($remaining);
-                    $customer->setCreditStatus(0);
+                    if ($remaining == 0) {
+                        $customer->setCreditStatus(0);
+                    }
+                    $db->updateCreditBalance($customer);
                 }
-                $db->updateCreditBalance($customer);
             }
         }
         ?>
