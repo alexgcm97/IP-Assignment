@@ -50,7 +50,11 @@ function processOrder() {
             echo '<script type="text/javascript">alert("Invalid Quantity Input.");</script>';
         }
     } elseif (isset($_POST['clear'])) {
-        $order->clearODList();
+        if (!empty($order->getAllOD())) {
+            $order->clearODList();
+        } else {
+            echo '<script type="text/javascript">alert("Cart is empty.");</script>';
+        }
     }
     updateOrderCart();
 }
@@ -81,8 +85,8 @@ function updateOrderCart() {
             . "<td style='width:40%;word-wrap:break-word;'><span style='font-size:16px; font-style: oblique;'><b>$name</b></span><br/>$description</td>"
             . "<td style='width:30%;text-align:center'>"
             . "<input type='hidden' name='id' value='$productID'/>"
-            . "<input type='number' name='newQty' value='$quantity' style='width:50px;text-align:center;vertical-align:middle'/> "
-            . "<button type='submit' name='update' style='margin-left:-5px;width:20px;background:transparent;border:none;'><img src='../img/update.png' style='height:15px;width:15px;vertical-align:middle;'/></button>"
+            . "<input type='number' name='newQty' min='1' step='1' value='$quantity' style='width:50px;text-align:center;vertical-align:middle'/> "
+            . "<button type='submit' name='update' style='margin-left:-5px;width:20px;background:transparent;border:none;'><img src='img/update.png' style='height:15px;width:15px;vertical-align:middle;'/></button>"
             . "<br/><input type='submit' class='btn-small pink' name='delete' value='Remove' style='margin-top:5px;margin-left:0px;font-size:12px'/></td>"
             . "<td style='width:25%;text-align:center'>" . sprintf('%.2f', $totalAmount) . "</td>"
             . "</tr></form>";

@@ -22,10 +22,9 @@ class OrdersDB {
         Database::setCharsetEncoding();
     }
 
-    function retrieveCatalog() {
+    function retrieveCatalog($date) {
         try {
             $db = $this->db;
-            $date = date('F Y');
             $sql_query = "SELECT c.catalogID, p.productID, p.name, p.description, p.price, p.status, pc.type from product p, catalog c, pdt_catalog pc where c.date = '$date'"
                     . " AND c.catalogID = pc.catalogID AND pc.productID = p.productID";
             $stm = $db->prepare($sql_query);
@@ -65,7 +64,7 @@ class OrdersDB {
             $db = $this->db;
             $sql = "INSERT INTO orders (orderID, orderDate, custID, shipMethod, shipAddress, shipDate, shipTime, grandTotal) VALUES (?,?,?,?,?,?,?,?)";
             $stmt = $db->prepare($sql);
-            $stmt->execute($order->getOrderID(), $order->getOrderDate(), $order->getCustID(), $order->getShipMethod(), $order->getShipAddress(), $order->getShipDate(), $order->getShipTime(), $order->getGrandTotal());
+            $stmt->execute(array($order->getOrderID(), $order->getOrderDate(), $order->getCustID(), $order->getShipMethod(), $order->getShipAddress(), $order->getShipDate(), $order->getShipTime(), $order->getGrandTotal()));
         } catch (Exception $e) {
             print $e->getMessage();
         }
@@ -74,9 +73,21 @@ class OrdersDB {
     function insertOD($od) {
         try {
             $db = $this->db;
-            $sql = "INSERT INTO orderdetails (orderID, orderDate, custID, shipMethod, shipAddress, shipDate, shipTime, grandTotal) VALUES (?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO orderdetails (orderID, productID, name, description, price, quantity, totalAmount) VALUES (?,?,?,?,?,?,?)";
             $stmt = $db->prepare($sql);
-            $stmt->execute($order->getOrderID(), $order->getOrderDate(), $order->getCustID(), $order->getShipMethod(), $order->getShipAddress(), $order->getShipDate(), $order->getShipTime(), $order->getGrandTotal());
+            $stmt->execute(array($od->getOrderID(), $od->getProductID(), $od->getName(), $od->getDescription(), $od->getPrice(), $od->getQuantity(), $od->getTotalAmount()));
+        } catch (Exception $e) {
+            print $e->getMessage();
+        }
+    }
+
+    function updateCreditBalance($customer) {
+        try {
+            $db = $this->db;
+            $custID = $customer->getCustID();
+            $sql = "UPDATE customer SET creditBalance = ? , creditStatus = ? WHERE custId = $custID";
+            $stmt = $db->prepare($sql);
+            $stmt->execute(array($customer->getCreditBalance(), $customer->getCreditStatus()));
         } catch (Exception $e) {
             print $e->getMessage();
         }

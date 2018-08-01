@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2018 at 06:47 AM
+-- Generation Time: Aug 01, 2018 at 08:41 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `catalog` (
   `catalogID` int(11) NOT NULL,
-  `date` varchar(10) NOT NULL
+  `date` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -38,8 +38,8 @@ CREATE TABLE `catalog` (
 --
 
 INSERT INTO `catalog` (`catalogID`, `date`) VALUES
-(11001, 'July 2018'),
-(11002, 'June 2018');
+(11001, 'January 2018'),
+(11002, 'August 2018');
 
 -- --------------------------------------------------------
 
@@ -53,8 +53,18 @@ CREATE TABLE `customer` (
   `custName` varchar(40) COLLATE utf8_bin NOT NULL,
   `custEmail` varchar(30) COLLATE utf8_bin NOT NULL,
   `creditLimit` double NOT NULL,
+  `creditBalance` double NOT NULL,
   `creditStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`custID`, `custType`, `custName`, `custEmail`, `creditLimit`, `creditBalance`, `creditStatus`) VALUES
+(1001, 1, 'Alex', 'abc@gmail.com', 0, 0, 1),
+(1002, 2, 'Steve', 'def@gmail.com', 1000, 1000, 1),
+(1003, 2, 'Jake', 'jake@gmail.com', 500, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -82,7 +92,7 @@ CREATE TABLE `orders` (
   `orderID` int(11) NOT NULL,
   `orderDate` date NOT NULL,
   `custID` int(11) NOT NULL,
-  `orderType` int(11) NOT NULL,
+  `shipMethod` int(11) NOT NULL,
   `shipAddress` varchar(50) COLLATE utf8_bin NOT NULL,
   `shipDate` date NOT NULL,
   `shipTime` time NOT NULL,
@@ -107,15 +117,15 @@ CREATE TABLE `pdt_catalog` (
 
 INSERT INTO `pdt_catalog` (`catalogID`, `productID`, `type`) VALUES
 (11001, 10001, 'Monthly'),
-(11001, 10004, 'Monthly'),
-(11001, 10005, 'Monthly'),
 (11001, 10006, 'Monthly'),
-(11001, 10007, 'Bouquet'),
-(11001, 10008, 'Bouquet'),
 (11001, 10009, 'Promotion'),
 (11001, 10011, 'Promotion'),
 (11002, 10002, 'Monthly'),
 (11002, 10003, 'Monthly'),
+(11002, 10004, 'Monthly'),
+(11002, 10005, 'Monthly'),
+(11002, 10007, 'Bouquet'),
+(11002, 10008, 'Bouquet'),
 (11002, 10010, 'Promotion');
 
 -- --------------------------------------------------------

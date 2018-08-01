@@ -31,9 +31,9 @@ function startSession() {
                 $custID = $customer->getCustID();
                 $_SESSION['order'] = new Orders($orderID, $date, $custID, 0, null, null, null, 0);
             }
+        } else {
+            header("Location: ../View/index.php");
         }
-    } else {
-        $_SESSION['error'] = true;
     }
 }
 

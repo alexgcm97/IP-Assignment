@@ -14,7 +14,9 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Order Confirmation Page</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+
         <style>
             label {
                 font-size:15px;
@@ -40,8 +42,8 @@ and open the template in the editor.
                 if (deliver.checked) {
                     shipAddress.style.display = "block";
                     addText.setAttribute("required", "required");
-                    dTime.style.display = "block";
-                    dDate.style.display = "block";
+                    dTime.style.display = "inline";
+                    dDate.style.display = "inline";
                     pTime.style.display = "none";
                     pDate.style.display = "none";
                 } else {
@@ -49,28 +51,34 @@ and open the template in the editor.
                     addText.setAttribute("disabled", "disabled");
                     dTime.style.display = "none";
                     dDate.style.display = "none";
-                    pTime.style.display = "block";
-                    pDate.style.display = "block";
+                    pTime.style.display = "inline";
+                    pDate.style.display = "inline";
                 }
 
             }
         </script>
     </head>
     <body style='left:20%;width:60%;position:fixed'>
-        <form action='orderComplete.php' method="post">
-            <h2 style="text-align: center">Order Confirmation Page</h2>
-            <div style="height:700px;border-radius:10px;width:80%;margin:auto;border:1px solid black;">
-                <div style='margin:auto;width:90%;margin-top:20px'>
+        <h2 style="text-align: center">Order Confirmation Page</h2>
+        <div style="height:700px;border-radius:10px;width:80%;margin:auto;border:1px solid black;">
+            <div style='margin:auto;width:90%;margin-top:20px'>
+                <form action='orderComplete.php' method="post">
+
                     <?php
                     require '../Controller/getSessionData.php';
 
                     startSession();
+
+                    if (!isset($_SESSION['order'])) {
+                        
+                    }
 
                     $order = $_SESSION['order'];
                     $customer = $_SESSION['customer'];
 
                     $custID = $customer->getCustID();
                     $custName = $customer->getCustName();
+                    $custType = $customer->getCustType();
 
                     // put your code here
                     echo "<div class='row'><div class='col s6'><label for='custID'>Customer ID:<input type='text' name='custID' value='$custID' readonly='readonly'/></label></div>"
@@ -87,11 +95,18 @@ and open the template in the editor.
                                 <input type="radio" name="shipMethod" value="1" onclick='ShowHideDiv()' checked required/><span style="color:black">Pick-up</span>
                             </label>
                         </div>
-                        <div class="col s2">
+                        <?php
+                        $grandTotal = $order->getGrandTotal();
+                        if ($grandTotal < 30) {
+                            echo " <span style='text-align:right'>*Minimum order of RM30 is required for delivery.</span>";
+                        }
+                        ?>
+                        <div class = "col s2">
                             <label>
-                                <input type="radio" name="shipMethod" id='deliver' value="2" onclick='ShowHideDiv()'required/><span style="color:black">Delivery</span>
-                            </label>      
+                                <input type = "radio" name = "shipMethod" id = 'deliver' value = "2" onclick = 'ShowHideDiv()'required /><span style = "color:gray" >Delivery</span>
+                            </label>
                         </div>
+
                     </div>
 
                     <div class="row" id='shipAddress' style='display:none'>
@@ -104,10 +119,11 @@ and open the template in the editor.
 
                     <div class="row" id='shipDate'>
                         <div class="col s6">
-                            <label for='shipDate'><span id='pDate'>Pickup Date:</span><span id='dDate' style='display:none'>Delivery Date:</span>
+                            <label for='shipDate'><span id='pDate'>Pickup Date</span><span id='dDate' style='display: none'>Delivery Date</span><span> (At least 2 days later) : </span>
                                 <?php
-                                $date = date('Y-m-d', strtotime(' +1 day'));
-                                echo "<input type = 'date' name='shipDate' value='$date'/>";
+                                $date = date('Y-m-d');
+                                $requiredDate = date('Y-m-d', strtotime(' +2 day'));
+                                echo "<input type = 'date' name='shipDate' value='$date' min='$requiredDate' required/>";
                                 ?>
                             </label>
                         </div>
@@ -131,14 +147,34 @@ and open the template in the editor.
                         </div>
                     </div>
 
-                    <div class='row'>
-                        <div class="col s12" style='text-align:center;margin-top:50px'>
-                            <input type='submit' value='Confirm Order' class='btn brown' style='width:200px;height:50px;font-size:20px;'/>
-                        </div>
+                    <?php
+                    echo "<div class = 'row'><div class='col s6'>";
+                    if ($custType == 2) {
+                        $creditBalance = $customer->getCreditBalance();
+                        $remaining = $_POST['remaining'];
+                        echo "<label for='remaining'> Orignal Credit Balance:";
+                        echo "<br/><input type='text' value='RM' style='width:6%' readonly='readonly'/><input type ='text' name='creditBalance' value='" . number_format($creditBalance, 2, ".", ",") . " ' style='width:94%;' readonly='readonly'/></label></div> ";
+                        echo "<div class='col s6'>";
+                        echo "<label for='remaining'> Remaining Credit Balance after Paid:";
+                        echo "<br/><input type='text' value='RM' style='width:6%' readonly='readonly'/><input type ='text' name='remaining' value='" . number_format($remaining, 2, ".", ",") . " ' style='width:94%;' readonly='readonly'/></label></div> ";
+                    }
+                    echo "</div></div>";
+                    ?>
+                    <div class="col s6" style='text-align:center;margin-top:40px'>
+                        <input type='submit' value='Confirm Order' class='btn brown' style='width:200px;height:45px;font-size:20px;'/>
                     </div>
-                </div>
+                </form>
+                <form action="orderPage.php" method="post">
+                    <div class="col s6" style='text-align:center;margin-top:20px'>
+                        <button type='submit' class='btn grey' style='width:130px;vertical-align: middle;height:45px;font-size:20px;'><span style='margin-left:-16px;'>Cancel</span>
+                            <?php
+                            echo "<input type='hidden' value='$custID' name='custID'/>";
+                            ?>
+                            <i class="material-icons left" style="vertical-align:middle">clear</i>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
-</body>
+    </body>
 </html>

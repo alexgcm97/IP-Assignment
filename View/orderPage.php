@@ -25,10 +25,19 @@ and open the template in the editor.
         }
         if (empty($_SESSION['customer']->getCustID())) {
             header("Location: ../View/index.php?err=1");
+        } else {
+            $order = $_SESSION['order'];
+            $customer = $_SESSION['customer'];
+            $creditStatus = $customer->getCreditStatus();
+            if ($creditStatus == false) {
+                header("Location: ../View/index.php?errNo=1");
+            }
         }
         ?>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+
         <style>
             input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
                 -webkit-appearance: none;
@@ -38,7 +47,6 @@ and open the template in the editor.
     </head>
 
     <body style="margin:auto;width:70%;margin-top:30px">
-        <script type="text/javascript" src="../js/materialize.min.js"></script>
         <div>
             <form action="index.php">
                 <button class="btn waves-effect waves-light" type="submit" style="left:0;height:30;display:inline-block;">Back
@@ -75,9 +83,6 @@ and open the template in the editor.
 
 
             <?php
-            $order = $_SESSION['order'];
-            $customer = $_SESSION['customer'];
-
             echo "<div style='height:470px;width:500px;overflow-y:auto;'>" .
             "<table border='1'maxheight='470px' width='470px' style='table-layout:fixed'>";
 
@@ -100,7 +105,8 @@ and open the template in the editor.
             $grandTotal = $order->getGrandTotal();
             echo "<form action='orderPage.php' method='post'>";
             echo "<input type='submit' name='clear' value='Clear Cart' class='btn blue-grey' style='margin:30px 0px 5px 300px;width:200px'/></form>";
-            if ($customer->getCustType() == 2) {
+            $custType = $customer->getCustType();
+            if ($custType == 2) {
                 $creditBalance = $customer->getCreditBalance();
                 $remaining = (double) $creditBalance - (double) $grandTotal;
                 if ($remaining >= 0) {
@@ -110,7 +116,15 @@ and open the template in the editor.
             echo "<h4 style='text-align:right;width:500px;'>Total Amount : RM" . number_format($grandTotal, 2, ".", ",") . "</h4>";
             ?>
             <form action="../View/orderConfirm.php" method="post">
-                <input type="submit" name="submitOrder" value="Submit Order" class="btn blue" style="width:500px;height:50px;font-size:25px;margin-top:30px"/>
+                <?php
+                if ($custType == 2) {
+                    echo "<input type='hidden' value='$remaining' name='remaining'/>";
+                }
+                if ($grandTotal < 30) {
+                    echo "<h6 style='text-align:right;width:500px'>*A minimum order of RM30 is required.</h6>";
+                }
+                ?>
+                <input type="submit" name="submitOrder" value="Submit Order" class="btn blue" style="width:500px;height:50px;font-size:25px;margin-top:20px"  <?php if (empty($order->getAllOD()) || $grandTotal < 30) { ?> disabled <?php } ?> />
             </form>
         </div>
     </body>
