@@ -1,34 +1,22 @@
 <?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="OrderCatalog.xsl"?>
-<OrderCatalog>
+<!DOCTYPE SalesOrder SYSTEM "SalesOrder.dtd">
+<?xml-stylesheet type="text/xsl" href="SalesOrder.xsl"?>
+<SalesOrder>
+  <orderID>1004</orderID>
+  <orderDate>01 August 2018</orderDate>
+  <shipDate>06 August 2018</shipDate>
+  <shipMethod>1</shipMethod>
+  <to>
+    <custName>Alex</custName>
+    <shipAddress>-</shipAddress>
+  </to>
   <product>
-    <id>10001</id>
-    <name>Aconitum</name>
-    <description>1 unit, Monthly Sales</description>
-    <price>3</price>
-  </product>
-  <product>
-    <id>10003</id>
+    <no>1</no>
     <name>Bellflower</name>
     <description>1 unit, Monthly Sales</description>
     <price>3</price>
+    <quantity>55</quantity>
+    <totalAmount>165</totalAmount>
   </product>
-  <product>
-    <id>10005</id>
-    <name>Bluebell</name>
-    <description>1 unit, Monthly Sales</description>
-    <price>3</price>
-  </product>
-  <product>
-    <id>10007</id>
-    <name>Aconitum</name>
-    <description>Bounquet - 10</description>
-    <price>40</price>
-  </product>
-  <product>
-    <id>10009</id>
-    <name>Sunset Roses</name>
-    <description>Mother Day</description>
-    <price>40</price>
-  </product>
-</OrderCatalog>
+  <grandTotal>165</grandTotal>
+</SalesOrder>

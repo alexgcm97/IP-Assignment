@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Ordering Module</title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <script type="text/javascript" src="js/materialize.min.js"></script>
     </head>
@@ -61,6 +61,7 @@ and open the template in the editor.
                     $db->updateCreditBalance($customer);
                 }
             }
+            $orderID = $order->getOrderID();
         }
         ?>
 
@@ -68,6 +69,7 @@ and open the template in the editor.
         <div style="height:320px;width:500px;border-radius:10px;border:1px solid black; background-color: white">
             <h4>Order has been completed.</h4>
             <form action="viewSalesOrder.php" method='post'>
+                <?php echo "<input type='hidden' name='orderID' value='$orderID'/>" ?>
                 <input type="submit" class="btn cyan" name="restart" style='font-size:25px;width:300px;height:80px;margin-top:30px' value="View Sales Order"/>
             </form>
             <form action="index.php" method='post'>

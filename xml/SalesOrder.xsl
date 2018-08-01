@@ -17,72 +17,124 @@
     <xsl:template match="/">
         <html>
             <head>
-                <title>OrderCatalog.xsl</title>
+                <title>Sales Order</title>
             </head>
             <body>
-                <table border="1" width="680px" style="border-bottom:0" >
-                    <tr>
-                        <th style="width:5%;text-align:center">No.</th>
-                        <th style="padding:10px 10px 10px 10px;width:70%">Product</th>
-                        <th style="padding:10px 10px 10px 10px;width:20%">Action</th>
-                    </tr>
-                </table>
-                <div style="height:470px;overflow-y:scroll">
-                    <table border="1" width="680px" style="border-top:0" >
-                        <xsl:for-each select="OrderCatalog/product">
-                            <form action='orderPage.php' method="post">
-                                <tr style="height:90px">
-                                    <td style="width:5%;text-align:center">
-                                        <xsl:value-of select="position()"/>
-                                        <input type="hidden" name="id">
-                                            <xsl:attribute name="value">
-                                                <xsl:value-of select="id"/>
-                                            </xsl:attribute>
-                                        </input>
+                <div style='margin:10px 0px 0px 100px'>
+                    <form action="index.php">
+                        <button class="btn waves-effect waves-light" type="submit" style="width:150px;left:0;height:30;display:inline-block;">Exit
+                            <i class="material-icons left">arrow_back</i>
+                        </button>
+                    </form>
+                </div>
+                <div style='margin:auto;width:55%;'>
+                    <xsl:variable name="shipMethod" select="SalesOrder/shipMethod"/>
+                    <h2 style='text-align:center;margin:auto;font-weight:650;margin-bottom:20px;width:300px'>
+                        <u>Sales Order</u>
+                    </h2>
+                    <div class="row" width="100%">
+                        <div class="col s2" style="text-align:right">
+                            <b>From : </b> 
+                        </div>
+                        <div class="col s3">
+                            Fiore Flowershop
+                        </div>
+                        <div class="col s2" style="text-align:right">
+                            <b>To : </b>
+                        </div>
+                        <div class="col s4">
+                            <xsl:value-of select="SalesOrder/to/custName"/>
+                        </div>
+                    </div>
+                                                
+                    <div class="row">
+                        <xsl:choose>
+                            <xsl:when test="$shipMethod = 2">
+                                <div class="col s2" style="text-align:right">
+                                    <b>Shipping Method : </b> 
+                                </div>
+                                <div class="col s3">
+                                    Delivery
+                                </div>
+                                <div class="col s2" style="text-align:right">
+                                    <b>Delivery Address : </b>
+                                </div>
+                                <div class="col s4">
+                                    <xsl:value-of select="SalesOrder/to/shipAddress"/>
+                                </div>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <div class="col s2" style="text-align:right">
+                                    <b>Shipping Method : </b>
+                                </div>
+                                <div class="col s10">Pickup
+                                </div>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </div>
+                    <div class="row">
+                        <div class="col s2" style="text-align:right">
+                            <b>Order Date : </b>
+                        </div>
+                        <div class="col s3">
+                            <xsl:value-of select="SalesOrder/orderDate"/>
+                        </div>
+                        <div class="col s2" style="text-align:right">
+                            <xsl:choose>
+                                <xsl:when test="$shipMethod = 1">
+                                    <b>Pickup Date : </b>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <b>Delivery Date : </b>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </div>
+                        <div class="col s4">
+                            <xsl:value-of select="SalesOrder/shipDate"/>
+                        </div>
+                    </div>  
+                    <div style="width:100%;min-height:500px;border:1px solid lightgrey;margin-top:20px;">
+                        <table width="100%" style="table-layout:fixed" class="highlight">
+                            <tr>
+                                <th width="5%" style="text-align:center">No</th>
+                                <th width="60%">Name &amp; Description</th>
+                                <th width="12%">Unit Price(RM)</th>
+                                <th width="8%" style='text-align:center'>Quantity</th>
+                                <th width="15%">Total Amount(RM)</th>
+                            </tr>
+                            <xsl:for-each select="SalesOrder/product">
+                                <tr>
+                                    <td width="5%" style='text-align:center'>
+                                        <xsl:value-of select="no"/>
                                     </td>
-                                    <td style="padding:5px 10px 10px 10px;width:70%">
-                                        <b>
-                                            <input type="hidden" name="name">
-                                                <xsl:attribute name="value">
-                                                    <xsl:value-of select="name"/>
-                                                </xsl:attribute>
-                                            </input>
-                                            <span>Name: </span> 
-                                        </b>  
-                                        <xsl:value-of select="name"/>
-                                        <br/>
-                                        <b>
-                                            <input type="hidden" name="description">
-                                                <xsl:attribute name="value">
-                                                    <xsl:value-of select="name"/>
-                                                </xsl:attribute>
-                                            </input>
-                                            <span>Description: </span> 
-
-                                        </b>                                 
-                                        <xsl:value-of select="description"/>
-                                        <br/>
-                                        <b>
-                                            <input type="hidden" name="price">
-                                                <xsl:attribute name="value">
-                                                    <xsl:value-of select="name"/>
-                                                </xsl:attribute>
-                                            </input>
-                                            <span>Price: </span> 
-
-                                        </b>   
-                                        RM <xsl:value-of select="price"/>    
-                                    </td>                     
-                                    <td style="padding:5px 0 10px 0;width:20%;text-align:center">
-                                        <label for="quantity">Qty: </label>
-                                        <input type="text" name="quantity" style="width:30px;margin-bottom:10px"/>
-                                        <br/>
-                                        <input type="submit" name="add" value="Add to Cart"/>
+                                    <td width="60%">
+                                        <div>
+                                            <xsl:value-of select="name"/> - <xsl:value-of select="description"/>
+                                        </div>
                                     </td>
+                                    <td width="12%" style='text-align:right;padding-right:20px'>
+                                        <xsl:value-of select="format-number(price, '#.00')"/>                            
+                                    </td>
+                                    <td width="8%" style='text-align:center'>
+                                        <xsl:value-of select="quantity"/>
+                                    </td>
+                                    <td width="15%" style='text-align:right;padding-right:20px'>
+                                        <xsl:value-of select="format-number(totalAmount, '#.00')"/>
+                                    </td>      
                                 </tr>
-                            </form>
-                        </xsl:for-each>
-                    </table>
+                            </xsl:for-each>
+                        </table>
+                    </div>
+                    <div class="row" style="margin-top:20px;padding-right:10px">
+                        <div width='100%' class="col s10" style="text-align:right;font-size:20px">
+                            <span>
+                                <b>Grand Total (RM) : </b>
+                            </span>
+                        </div>
+                        <div class="col s2" style="text-align:right;font-size:20px">
+                            <xsl:value-of select="format-number(SalesOrder/grandTotal, '#.00')"/>
+                        </div>
+                    </div>
                 </div>
             </body>
         </html>

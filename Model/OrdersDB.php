@@ -25,11 +25,11 @@ class OrdersDB {
     function retrieveCatalog($date) {
         try {
             $db = $this->db;
-            $sql_query = "SELECT c.catalogID, p.productID, p.name, p.description, p.price, p.status, pc.type from product p, catalog c, pdt_catalog pc where c.date = '$date'"
+            $sql = "SELECT c.catalogID, p.productID, p.name, p.description, p.price, p.status, pc.type from product p, catalog c, pdt_catalog pc where c.date = '$date'"
                     . " AND c.catalogID = pc.catalogID AND pc.productID = p.productID";
-            $stm = $db->prepare($sql_query);
-            $stm->execute();
-            return $stm->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             print $e->getMessage();
         }
@@ -38,10 +38,10 @@ class OrdersDB {
     function getLastOrderID() {
         try {
             $db = $this->db;
-            $sql_query = "SELECT orderID from orders ORDER BY orderID DESC LIMIT 1";
-            $stm = $db->prepare($sql_query);
-            $stm->execute();
-            return $stm->fetch(PDO::FETCH_ASSOC);
+            $sql = "SELECT orderID from orders ORDER BY orderID DESC LIMIT 1";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             print $e->getMessage();
         }
@@ -50,10 +50,10 @@ class OrdersDB {
     function retrieveCustomer($custID) {
         try {
             $db = $this->db;
-            $sql_query = "SELECT * from customer WHERE custID = '$custID'";
-            $stm = $db->prepare($sql_query);
-            $stm->execute();
-            return $stm->fetch(PDO::FETCH_ASSOC);
+            $sql = "SELECT * from customer WHERE custID = '$custID'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             print $e->getMessage();
         }
@@ -88,6 +88,30 @@ class OrdersDB {
             $sql = "UPDATE customer SET creditBalance = ? , creditStatus = ? WHERE custId = $custID";
             $stmt = $db->prepare($sql);
             $stmt->execute(array($customer->getCreditBalance(), $customer->getCreditStatus()));
+        } catch (Exception $e) {
+            print $e->getMessage();
+        }
+    }
+
+    function retrieveOrder($orderID) {
+        try {
+            $db = $this->db;
+            $sql = "SELECT * from orders WHERE orderID = $orderID";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            print $e->getMessage();
+        }
+    }
+
+    function retrieveOrderDetails($orderID) {
+        try {
+            $db = $this->db;
+            $sql = "SELECT * from orderDetails WHERE orderID = $orderID";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             print $e->getMessage();
         }

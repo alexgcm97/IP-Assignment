@@ -43,7 +43,7 @@ function generateCatalog() {
             $status = $product->getStatus();
             echo "<form action='orderPage.php' method='post'>";
             if ($position == 1) {
-                echo "<tr><th colspan='3' style='font-style: italic; font-size:18px'><img src='img/single.png' style='width:20px; height:20px; vertical-align:middle; margin-right:10px'/>Monthly Item</th></tr>";
+                echo "<tr><th colspan='3' style='font-style: italic; font-size:18px'>Monthly Item<img src='img/single.png' style='width:25px; height:25px; vertical-align:middle; margin-left:5px'/></th></tr>";
             }
             echo "<tr style='height:70px'>";
             echo "<td style='width:5%;text-align:center'> $position </td>";
@@ -51,7 +51,7 @@ function generateCatalog() {
             . "<input type='hidden' value='$id' name='id'/>"
             . "<input type='hidden' value='$description' name='description'/>"
             . "<input type='hidden' value='$price' name='price'/>";
-            echo "<td style='padding:5px 10px 10px 10px;width:65%'><b> Name: </b> $name <br/> <b> Description: </b> $description </br> <b> Price: </b>RM $price</td>";
+            echo "<td style='padding:10px 10px 10px 17px;width:65%'><b> Name: </b> $name <br/> <b> Description: </b> $description </br> <b> Price: </b>RM $price</td>";
             echo "<td style='padding:5px 0 10px 0;width:25%;text-align:center'>";
             if ($status == 1) {
                 echo "<label for='quantity'>Qty: </label>"
@@ -77,16 +77,16 @@ function generateCatalog() {
             $status = $product->getStatus();
             echo "<form action='orderPage.php' method='post'>";
             if ($position == 1) {
-                echo "<tr><th colspan='3' style='font-style: italic; font-size:18px'><img src='img/bouquet.png' style='width:20px; height:20px; vertical-align:middle; margin-right:10px'/>Flower Bouquet</th></tr>";
+                echo "<tr style='height:50px'><th colspan='3' style='font-style: italic; font-size:18px'>Flower Bouquet<img src='img/bouquet.png' style='vertical-align:middle;width:25px; height:25px; margin-left:5px'/></th></tr>";
             }
-            echo "<tr style='height:90px'>";
+            echo "<tr>";
             echo "<td style='width:5%;text-align:center'> $position </td>";
             echo "<input type='hidden' value='$name' name='name'/>"
             . "<input type='hidden' value='$id' name='id'/>"
             . "<input type='hidden' value='$description' name='description'/>"
             . "<input type='hidden' value='$price' name='price'/>";
-            echo "<td style='padding:5px 10px 10px 10px;width:65%'><b> Name: </b> $name <br/> <b> Description: </b> $description </br> <b> Price: </b>RM $price</td>";
-            echo "<td style='padding:5px 0 10px 0;width:25%;text-align:center'>";
+            echo "<td style='padding:10px 10px 10px 17px;width:65%'><b> Name: </b> $name <br/> <b> Description: </b> $description </br> <b> Price: </b>RM $price</td>";
+            echo "<td style='padding:10px 0 10px 0;width:25%;text-align:center'>";
             if ($status == 1) {
                 echo "<label for='quantity'>Qty: </label>"
                 . "<input type='number' name='quantity' min='1' step='1' style='width:30px;margin-bottom:10px;text-align:center'/><br/>"
@@ -111,7 +111,7 @@ function generateCatalog() {
             $status = $product->getStatus();
             echo "<form action='orderPage.php' method='post'>";
             if ($position == 1) {
-                echo "<tr><th colspan='3' style='font-style: italic; font-size:18px;'><img src='img/promotion.png' style='width:20px; height:20px; margin-right:10px'/>Promotion Item</th></tr>";
+                echo "<tr><th colspan='3' style='font-style: italic; font-size:18px;'>Promotion Item<img src='img/promotion.png' style='vertical-align:bottom;width:35px; height:20px; margin-left:5px'/></th></tr>";
                 ;
             }
             echo "<tr style='height:90px'>";
@@ -120,7 +120,7 @@ function generateCatalog() {
             . "<input type='hidden' value='$id' name='id'/>"
             . "<input type='hidden' value='$description' name='description'/>"
             . "<input type='hidden' value='$price' name='price'/>";
-            echo "<td style='padding:5px 10px 10px 10px;width:65%'><b> Name: </b> $name <br/> <b> Description: </b> $description </br> <b> Price: </b>RM $price</td>";
+            echo "<td style='padding:10px 10px 10px 17px;width:65%'><b> Name: </b> $name <br/> <b> Description: </b> $description </br> <b> Price: </b>RM $price</td>";
             echo "<td style='padding:5px 0 10px 0;width:25%;text-align:center'>";
             if ($status == 1) {
                 echo "<label for='quantity'>Qty: </label>"

@@ -53,7 +53,7 @@ function processOrder() {
         if (!empty($order->getAllOD())) {
             $order->clearODList();
         } else {
-            echo '<script type="text/javascript">alert("Cart is empty.");</script>';
+            echo '<script type="text/javascript">alert("Cart is already empty.");</script>';
         }
     }
     updateOrderCart();
