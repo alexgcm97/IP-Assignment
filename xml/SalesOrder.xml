@@ -2,21 +2,23 @@
 <!DOCTYPE SalesOrder SYSTEM "SalesOrder.dtd">
 <?xml-stylesheet type="text/xsl" href="SalesOrder.xsl"?>
 <SalesOrder>
-  <orderID>1004</orderID>
+  <orderID>1003</orderID>
   <orderDate>01 August 2018</orderDate>
-  <shipDate>06 August 2018</shipDate>
+  <shipDate>05 August 2018</shipDate>
+  <shipTime>08:00 am</shipTime>
   <shipMethod>1</shipMethod>
   <to>
     <custName>Alex</custName>
+    <custEmail>alex@gmail.com</custEmail>
     <shipAddress>-</shipAddress>
   </to>
   <product>
     <no>1</no>
-    <name>Bellflower</name>
+    <name>Anemone</name>
     <description>1 unit, Monthly Sales</description>
     <price>3</price>
-    <quantity>55</quantity>
-    <totalAmount>165</totalAmount>
+    <quantity>287</quantity>
+    <totalAmount>861</totalAmount>
   </product>
-  <grandTotal>165</grandTotal>
+  <grandTotal>861</grandTotal>
 </SalesOrder>

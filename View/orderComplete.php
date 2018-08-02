@@ -67,13 +67,13 @@ and open the template in the editor.
 
     <body style='position:fixed;left:35%;top:30%;text-align:center;background-color: white'>
         <div style="height:320px;width:500px;border-radius:10px;border:1px solid black; background-color: white">
-            <h4>Order has been completed.</h4>
+            <h5>Thank you for purchasing from us.<br/> I hope you enjoy our services.</h5>
             <form action="viewSalesOrder.php" method='post'>
                 <?php echo "<input type='hidden' name='orderID' value='$orderID'/>" ?>
-                <input type="submit" class="btn cyan" name="restart" style='font-size:25px;width:300px;height:80px;margin-top:30px' value="View Sales Order"/>
+                <input type="submit" class="btn black" name="restart" style='font-size:25px;width:300px;height:80px;margin-top:30px' value="View Sales Order"/>
             </form>
             <form action="index.php" method='post'>
-                <input type="submit" style='margin-top:30px;margin-bottom:30px'class="btn grey" name="restart" value="Return to Order Page"/>
+                <input type="submit" style='margin-top:30px;margin-bottom:30px'class="btn red" name="restart" value="Return to Order Page"/>
             </form>
         </div>
     </body>

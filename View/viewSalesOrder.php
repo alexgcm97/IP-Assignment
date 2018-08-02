@@ -29,6 +29,18 @@ and open the template in the editor.
             $xslt = new XSLTProcessor();
             $xslt->importStylesheet($xsl);
 
+            echo "<div style='margin:10px 0px 0px 100px'>";
+            if (isset($_POST['viewOrder'])) {
+                echo '<form action="orderHistory.php" method="post">';
+                echo '<button type="submit" class="btn red" style="width:150px;left:0;height:30;display:inline-block;">Back';
+            } else {
+                echo '<form action="index.php">';
+                echo '<button class="btn red" type="submit" style="width:150px;left:0;height:30;display:inline-block;">Exit';
+            }
+            echo '<i class="material-icons left">arrow_back</i>';
+            echo '</button>';
+            echo '</form>';
+            echo '</div>';
             echo $xslt->transformToXml($doc);
         }
         ?>

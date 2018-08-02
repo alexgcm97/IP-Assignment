@@ -26,6 +26,9 @@ and open the template in the editor.
                 -webkit-appearance: none;
                 margin: 0;
             }
+            input[type="number"] {
+                -moz-appearance:textfield;
+            }
         </style>
         <script>
             function ShowHideDiv() {
@@ -39,10 +42,12 @@ and open the template in the editor.
                 var shipDate = document.getElementById("shipDate");
                 var credit = document.getElementById("credit");
                 var creditText = document.getElementById("creditText");
+                var noteText = document.getElementById("noteText");
 
                 shipDate.style.display = "block";
                 if (deliver.checked) {
                     shipAddress.style.display = "block";
+                    noteText.style.display = "block";
                     addText.removeAttribute("disabled");
                     addText.setAttribute("required", "required");
                     dTime.style.display = "inline";
@@ -51,6 +56,7 @@ and open the template in the editor.
                     pDate.style.display = "none";
                 } else {
                     shipAddress.style.display = "none";
+                    noteText.style.display = "none";
                     addText.setAttribute("disabled", "disabled");
                     dTime.style.display = "none";
                     dDate.style.display = "none";
@@ -89,7 +95,7 @@ and open the template in the editor.
                 <?php
                 echo "<input type='hidden' value='$custID' name='custID'/>";
                 ?>
-                <button class="btn waves-effect waves-light" type="submit" style="width:150px;left:0;height:30;display:inline-block;">Back
+                <button class="btn red" type="submit" style="width:150px;left:0;height:30;display:inline-block;">Back
                     <i class="material-icons left">arrow_back</i>
                 </button>
             </form>
@@ -183,10 +189,13 @@ and open the template in the editor.
                         }
                         echo "</div></div>";
                         ?>
-                        <div class="col s6" style='text-align:center;margin-top:40px'>
+                        <div class="col s6" style='text-align:center;margin-top:40px;margin-bottom:100px'>
                             <input type='submit' value='Confirm Order' class='btn brown' style='width:200px;height:45px;font-size:20px;'/>
                         </div>
                     </form>
+                    <div style="display:none" id="noteText">
+                        <span style="color:gray">*Please note that the delivery time are subject to changes based on availability.</span>
+                    </div>
                 </div>
             </div>
         </div>

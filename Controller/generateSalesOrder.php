@@ -58,9 +58,13 @@ function generateSalesOrder($orderID) {
     $date = $order->getShipDate();
     $date = date("d F Y", strtotime($date));
     $root->appendChild($dom->createElement("shipDate", $date));
+    $time = $order->getShipTime();
+    $time = date("h:i a", strtotime($time));
+    $root->appendChild($dom->createElement("shipTime", $time));
     $root->appendChild($dom->createElement("shipMethod", $order->getShipMethod()));
     $to = $dom->createElement("to");
     $to->appendChild($dom->createElement("custName", $customer->getCustName()));
+    $to->appendChild($dom->createElement("custEmail", $customer->getCustEmail()));
     $to->appendChild($dom->createElement("shipAddress", $order->getShipAddress()));
     $root->appendChild($to);
     $index = 1;

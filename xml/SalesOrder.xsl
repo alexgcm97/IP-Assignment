@@ -20,65 +20,51 @@
                 <title>Sales Order</title>
             </head>
             <body>
-                <div style='margin:10px 0px 0px 100px'>
-                    <form action="index.php">
-                        <button class="btn waves-effect waves-light" type="submit" style="width:150px;left:0;height:30;display:inline-block;">Exit
-                            <i class="material-icons left">arrow_back</i>
-                        </button>
-                    </form>
-                </div>
                 <div style='margin:auto;width:55%;'>
                     <xsl:variable name="shipMethod" select="SalesOrder/shipMethod"/>
                     <h2 style='text-align:center;margin:auto;font-weight:650;margin-bottom:20px;width:300px'>
                         <u>Sales Order</u>
                     </h2>
-                    <div class="row" width="100%">
+                    <div class="row">
                         <div class="col s2" style="text-align:right">
-                            <b>From : </b> 
+                            <b>Order No:</b>
                         </div>
                         <div class="col s3">
-                            Fiore Flowershop
+                            #<xsl:value-of select="SalesOrder/orderID"/>
                         </div>
                         <div class="col s2" style="text-align:right">
                             <b>To : </b>
                         </div>
-                        <div class="col s4">
+                        <div class="col s5">
                             <xsl:value-of select="SalesOrder/to/custName"/>
+                            (<xsl:value-of select="SalesOrder/to/custEmail"/>)
                         </div>
                     </div>
-                                                
+
                     <div class="row">
+                        <div class="col s2" style="text-align:right">
+                            <b>Shipping Method : </b> 
+                        </div>
                         <xsl:choose>
-                            <xsl:when test="$shipMethod = 2">
-                                <div class="col s2" style="text-align:right">
-                                    <b>Shipping Method : </b> 
-                                </div>
+                            <xsl:when test="$shipMethod = 1">
                                 <div class="col s3">
-                                    Delivery
-                                </div>
-                                <div class="col s2" style="text-align:right">
-                                    <b>Delivery Address : </b>
-                                </div>
-                                <div class="col s4">
-                                    <xsl:value-of select="SalesOrder/to/shipAddress"/>
+                                    Pickup
                                 </div>
                             </xsl:when>
                             <xsl:otherwise>
-                                <div class="col s2" style="text-align:right">
-                                    <b>Shipping Method : </b>
-                                </div>
-                                <div class="col s10">Pickup
+                                <div class="col s3">
+                                    Delivery
                                 </div>
                             </xsl:otherwise>
                         </xsl:choose>
-                    </div>
-                    <div class="row">
                         <div class="col s2" style="text-align:right">
                             <b>Order Date : </b>
                         </div>
-                        <div class="col s3">
+                        <div class="col s5">
                             <xsl:value-of select="SalesOrder/orderDate"/>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col s2" style="text-align:right">
                             <xsl:choose>
                                 <xsl:when test="$shipMethod = 1">
@@ -89,10 +75,35 @@
                                 </xsl:otherwise>
                             </xsl:choose>
                         </div>
-                        <div class="col s4">
+                        <div class="col s3">
                             <xsl:value-of select="SalesOrder/shipDate"/>
                         </div>
+                        <div class="col s2" style="text-align:right">
+                            <xsl:choose>
+                                <xsl:when test="$shipMethod = 1">
+                                    <b>Pickup Time : </b>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <b>Delivery Time : </b>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </div>
+                        <div class="col s5">
+                            <xsl:value-of select="SalesOrder/shipTime"/>
+                        </div>
                     </div>  
+                    <div class="row">
+                        <xsl:choose>
+                            <xsl:when test="$shipMethod = 2">
+                                <div class="col s2" style="text-align:right">
+                                    <b>Delivery Address : </b>
+                                </div>
+                                <div class="col s10">
+                                    <xsl:value-of select="SalesOrder/to/shipAddress"/>                                   
+                                </div>
+                            </xsl:when>
+                        </xsl:choose>
+                    </div>
                     <div style="width:100%;min-height:500px;border:1px solid lightgrey;margin-top:20px;">
                         <table width="100%" style="table-layout:fixed" class="highlight">
                             <tr>

@@ -33,6 +33,9 @@ and open the template in the editor.
                 header("Location: ../View/index.php?errNo=1");
             }
         }
+        if (isset($_POST['viewOrder'])) {
+            header("Location: ../View/orderHistory.php");
+        }
         ?>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
@@ -40,8 +43,12 @@ and open the template in the editor.
 
         <style>
             input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+                -moz-appearance: none;
                 -webkit-appearance: none;
                 margin: 0;
+            }
+            input[type="number"] {
+                -moz-appearance:textfield;
             }
         </style>
     </head>
@@ -49,7 +56,7 @@ and open the template in the editor.
     <body>
         <div style='margin:10px 0px 0px 100px'>
             <form action="index.php">
-                <button class="btn waves-effect waves-light" type="submit" style="width:150px;left:0;height:30;display:inline-block;">Back
+                <button class="btn red" type="submit" style="width:150px;left:0;height:30;display:inline-block;">Back
                     <i class="material-icons left">arrow_back</i>
                 </button>
             </form>

@@ -12,12 +12,22 @@ and open the template in the editor.
 -->
 
 <!-- TODO define your own vocabulary/syntax. Example follows:  -->
-<!ELEMENT SalesOrder (orderID, orderDate, shipDate, shipMethod, to, product+, grandTotal )>
+<!ELEMENT SalesOrder (orderID, orderDate, shipDate, shipTime, shipMethod, to, product+, grandTotal )>
 <!ELEMENT orderID (#PCDATA)>
 <!ELEMENT orderDate (#PCDATA)>
 <!ELEMENT shipDate (#PCDATA)>
+<!ELEMENT shipTime (#PCDATA)>
 <!ELEMENT shipMethod (#PCDATA)>
-<!ELEMENT to (custName, shipAddress)>
+<!ELEMENT to (custName, custEmail, shipAddress)>
+<!ELEMENT custName (#PCDATA)>
+<!ELEMENT custEmail (#PCDATA)>
+<!ELEMENT shipAddress (#PCDATA)>
 <!ELEMENT product (no, name, description, price, quantity, totalAmount)>
+<!ELEMENT no (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT quantity (#PCDATA)>
+<!ELEMENT totalAmount (#PCDATA)>
 <!ELEMENT grandTotal (#PCDATA)>
 

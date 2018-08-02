@@ -11,7 +11,18 @@ and open the template in the editor.
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <script type="text/javascript" src="js/materialize.min.js"></script>
-
+        <script>
+            //get the input elements from HTML DOM
+            function updateValue() {
+                var custID = document.getElementById("custID");
+                var custIDTwo = document.getElementById("custIDTwo");
+                //Get the value of textOne textbox input
+                var custIDValue = custID.value;
+                var custIDTwoValue = custIDValue;
+                //Assign the value of textOne textbox to textTwo textbox
+                custIDTwo.value = custIDTwoValue;
+            }
+        </script>
     </head>
     <body style="position:fixed;left:35%;top:25%;text-align:center;background-color: #4a5b9d">
         <?php
@@ -26,8 +37,9 @@ and open the template in the editor.
         ?>
         <form action="../View/orderPage.php" method="post">
             <h3  style="margin-top:20px;margin-bottom:40px; font-weight: bold; color: beige">Welcome To Fiore Flowershop</h3>
-            <input type="text" name="custID" style='color:white;margin-bottom:20px' placeholder="Please Type Customer ID Here"/>
-            <input type="submit" name='login' class="btn" width="500px" value="Proceed to Order"/>
+            <input type="text" name="custID" id="custID" style='color:white;margin-bottom:20px' placeholder="Please Type Customer ID Here" onchange="updateValue()" required/>
+            <input type="submit" name='login' class="btn" width="500px" value="Proceed to Order"/><br/>
+            <input type="submit" name='viewOrder' class="btn" width="500px" value="View Order History" style="margin-top:20px;"/>
         </form>
     </body>
 </html>
