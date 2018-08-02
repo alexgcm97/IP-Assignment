@@ -22,8 +22,8 @@ function startSession() {
             $customer = $_SESSION['customer'];
             if (!empty($customer)) {
                 $result = $db->getLastOrderID();
-                if (empty($result['orderID'])) {
-                    $orderID = '1001';
+                if (empty($result)) {
+                    $orderID = 1001;
                 } else {
                     $orderID = $result['orderID'];
                     $orderID++;

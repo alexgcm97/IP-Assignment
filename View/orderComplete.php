@@ -20,6 +20,7 @@ and open the template in the editor.
             header("Location: ../View/index.php?err=1");
         } else {
             $order = $_SESSION['order'];
+            $orderID = $order->getOrderID();
             $customer = $_SESSION['customer'];
             $custID = $customer->getCustID();
             $custName = $customer->getCustName();
@@ -46,10 +47,21 @@ and open the template in the editor.
             $orderDate = date('Y-m-d');
             $order->setOrderDate($orderDate);
             $db = new OrdersDB();
+            $result = $db->retrieveOrder($orderID);
+            while (!empty($result)) {
+                unset($result);
+                $orderID++;
+                $result = $db->retrieveOrder($orderID);
+            };
+
+            $order->setOrderID($orderID);
             $db->insertOrder($order);
             foreach ($order->getAllOD() as $od) {
+                $od->setOrderID($orderID);
                 $db->insertOD($od);
             }
+
+
             if ($customer->getCustType() == 2) {
                 $payMethod = $_POST['payMethod'];
                 if ($payMethod == 2) {
@@ -61,7 +73,6 @@ and open the template in the editor.
                     $db->updateCreditBalance($customer);
                 }
             }
-            $orderID = $order->getOrderID();
         }
         ?>
 

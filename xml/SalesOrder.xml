@@ -2,23 +2,23 @@
 <!DOCTYPE SalesOrder SYSTEM "SalesOrder.dtd">
 <?xml-stylesheet type="text/xsl" href="SalesOrder.xsl"?>
 <SalesOrder>
-  <orderID>1007</orderID>
+  <orderID>1002</orderID>
   <orderDate>02 August 2018</orderDate>
-  <shipDate>08 August 2018</shipDate>
-  <shipTime>08:00 am</shipTime>
-  <shipMethod>1</shipMethod>
+  <shipDate>06 August 2018</shipDate>
+  <shipTime>10:00 am</shipTime>
+  <shipMethod>2</shipMethod>
   <to>
     <custName>Steve</custName>
     <custEmail>steve@hotmail.com</custEmail>
-    <shipAddress>-</shipAddress>
+    <shipAddress>123, Jalan Abc, Taman DEF, 52100 Kepong</shipAddress>
   </to>
   <product>
     <no>1</no>
-    <name>Anemone</name>
-    <description>1 unit, Monthly Sales</description>
-    <price>3</price>
-    <quantity>50</quantity>
-    <totalAmount>150</totalAmount>
+    <name>Aconitum</name>
+    <description>Bounquet - 10</description>
+    <price>40</price>
+    <quantity>10</quantity>
+    <totalAmount>400</totalAmount>
   </product>
-  <grandTotal>150</grandTotal>
+  <grandTotal>400</grandTotal>
 </SalesOrder>
