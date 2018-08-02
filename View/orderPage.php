@@ -112,7 +112,7 @@ and open the template in the editor.
 
                 $grandTotal = $order->getGrandTotal();
                 echo "<form action='orderPage.php' method='post'>";
-                echo "<input type='submit' name='clear' value='Clear Cart' class='btn blue-grey' style='margin:30px 0px 5px 300px;width:200px'/></form>";
+                echo "<input type='submit' name='clear' value='Clear Cart' class='btn blue-grey' style='margin:30px 0px 5px 300px;width:200px' formnovalidate/></form>";
                 $custType = $customer->getCustType();
                 if ($custType == 2) {
                     $creditBalance = $customer->getCreditBalance();
@@ -132,7 +132,7 @@ and open the template in the editor.
                         echo "<h6 style='text-align:right;width:500px'>*A minimum order of RM30 is required.</h6>";
                     }
                     ?>
-                    <input type="submit" name="submitOrder" value="Submit Order" class="btn blue" style="width:500px;height:50px;font-size:25px;margin-top:20px"  <?php if (empty($order->getAllOD()) || $grandTotal < 30) { ?> disabled <?php } ?> />
+                    <input type="submit" name="submitOrder" value="Submit Order" class="btn blue" style="width:500px;height:50px;font-size:25px;margin-top:20px"  <?php if (empty($order->getAllOD()) || $grandTotal < 30) { ?> disabled <?php } ?>  formnovalidate/>
                 </form> 
             </div>
         </div>

@@ -55,7 +55,7 @@ function generateCatalog() {
             echo "<td style='padding:5px 0 10px 0;width:25%;text-align:center'>";
             if ($status == 1) {
                 echo "<label for='quantity'>Qty: </label>"
-                . "<input type='number' name='quantity' min='1' step='1' style='width:30px;margin-bottom:10px;text-align:center'/><br/>"
+                . "<input type='number' name='quantity' min='1' max='99' step='1' style='width:30px;margin-bottom:10px;text-align:center'/><br/>"
                 . "<input type = 'submit' class='btn-small waves-light' name = 'add' value = 'Add to Cart'/> </td>";
             } else {
                 echo "<span>Sorry.<br/>Out of Stock.</span>";
@@ -89,7 +89,7 @@ function generateCatalog() {
             echo "<td style='padding:10px 0 10px 0;width:25%;text-align:center'>";
             if ($status == 1) {
                 echo "<label for='quantity'>Qty: </label>"
-                . "<input type='number' name='quantity' min='1' step='1' style='width:30px;margin-bottom:10px;text-align:center'/><br/>"
+                . "<input type='number' name='quantity' min='1' max='99' step='1' style='width:30px;margin-bottom:10px;text-align:center'/><br/>"
                 . "<input type = 'submit' class='btn-small waves-light' name = 'add' value = 'Add to Cart'/> </td>";
             } else {
                 echo "<span>Sorry.<br/>Out of Stock.</span>";
@@ -124,7 +124,7 @@ function generateCatalog() {
             echo "<td style='padding:5px 0 10px 0;width:25%;text-align:center'>";
             if ($status == 1) {
                 echo "<label for='quantity'>Qty: </label>"
-                . "<input type='number' name='quantity' min='1' step='1' style='width:30px;margin-bottom:10px;text-align:center'/><br/>"
+                . "<input type='number' name='quantity' min='1' max='99' step='1' style='width:30px;margin-bottom:10px;text-align:center'/><br/>"
                 . "<input type = 'submit' class='btn-small waves-light' name = 'add' value = 'Add to Cart'/> </td>";
             } else {
                 echo "<span>Sorry.<br/>Out of Stock.</span>";
