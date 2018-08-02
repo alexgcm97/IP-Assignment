@@ -141,7 +141,7 @@ and open the template in the editor.
                         <div class="row" id='shipAddress' style='display:none'>
                             <div class="col s12">
                                 <label for='shipAddress'> Delivery Address: 
-                                    <input type='text' name="shipAddress" id='addText'/>
+                                    <input type='text' name="shipAddress" id='addText' placeholder="Please type the delivery address here"/>
                                 </label>
                             </div>
                         </div>
@@ -170,7 +170,7 @@ and open the template in the editor.
                                 <label for='shipTime'> Total Amount to be Paid:
                                     <?php
                                     $grandTotal = $order->getGrandTotal();
-                                    echo "<br/><input type='text' value='RM' style='width:3%' readonly='readonly'/><input type ='text' name='grandTotal' value='" . number_format($grandTotal, 2, ".", ",") . " ' style='width:97%;' readonly='readonly'/> ";
+                                    echo "<br/><input type='text' value='RM' style='width:4%' readonly='readonly'/><input type ='text' name='grandTotal' value='" . number_format($grandTotal, 2, ".", ",") . " ' style='width:96%;' readonly='readonly'/> ";
                                     ?>
                                 </label>
                             </div>
@@ -182,18 +182,18 @@ and open the template in the editor.
                             $creditBalance = $customer->getCreditBalance();
                             $remaining = $_POST['remaining'];
                             echo "<label for='remaining'> Orignal Credit Balance:";
-                            echo "<br/><input type='text' value='RM' style='width:6%' readonly='readonly'/><input type ='text' name='creditBalance' value='" . number_format($creditBalance, 2, ".", ",") . " ' style='width:94%;' readonly='readonly'/></label></div> ";
+                            echo "<br/><input type='text' value='RM' style='width:8%' readonly='readonly'/><input type ='text' name='creditBalance' value='" . number_format($creditBalance, 2, ".", ",") . " ' style='width:92%;' readonly='readonly'/></label></div> ";
                             echo "<div class='col s6'>";
                             echo "<label for='remaining'> Remaining Credit Balance after Paid:";
-                            echo "<br/><input type='text' value='RM' style='width:6%' readonly='readonly'/><input type ='text' name='remaining' value='" . number_format($remaining, 2, ".", ",") . " ' style='width:94%;' readonly='readonly'/></label></div> ";
+                            echo "<br/><input type='text' value='RM' style='width:8%' readonly='readonly'/><input type ='text' name='remaining' value='" . number_format($remaining, 2, ".", ",") . " ' style='width:92%;' readonly='readonly'/></label></div> ";
                         }
                         echo "</div></div>";
                         ?>
-                        <div class="col s6" style='text-align:center;margin-top:40px;margin-bottom:100px'>
+                        <div class="col s6" style='text-align:center;margin-top:20px;margin-bottom:60px'>
                             <input type='submit' value='Confirm Order' class='btn brown' style='width:200px;height:45px;font-size:20px;'/>
                         </div>
                     </form>
-                    <div style="display:none" id="noteText">
+                    <div style="position:absolute;bottom: 13%; padding-left:1%;text-align:center" id="noteText">
                         <span style="color:gray">*Please note that the delivery time are subject to changes based on availability.</span>
                     </div>
                 </div>

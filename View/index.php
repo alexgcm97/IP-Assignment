@@ -37,7 +37,7 @@ and open the template in the editor.
         ?>
         <form action="../View/orderPage.php" method="post">
             <h3  style="margin-top:20px;margin-bottom:40px; font-weight: bold; color: beige">Welcome To Fiore Flowershop</h3>
-            <input type="text" name="custID" id="custID" style='color:white;margin-bottom:20px' placeholder="Please Type Customer ID Here" onchange="updateValue()" required/>
+            <input type="text" name="custID" id="custID" style='color:white;margin-bottom:20px' placeholder="Please type 'Customer ID' here" onchange="updateValue()" required/>
             <input type="submit" name='login' class="btn" width="500px" value="Proceed to Order"/><br/>
             <input type="submit" name='viewOrder' class="btn" width="500px" value="View Order History" style="margin-top:20px;"/>
         </form>
