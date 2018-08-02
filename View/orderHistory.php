@@ -37,25 +37,28 @@ and open the template in the editor.
             <div style="height:500px;overflow-y:auto;resize:none">
                 <table style="margin-right:20px;table-layout:fixed;">
                     <tr>
-                        <th width='10%'>No</th>
-                        <th width="30%">Order No.</th>
-                        <th width="30%">Order Date</th>
-                        <th width="30%">View</th>
+                        <th width='10%' style='text-align:center'>No</th>
+                        <th width="15%" style='text-align:center'>Order No.</th>
+                        <th width="30%" style='text-align:center'>Order Date</th>
+                        <th width="20%" style='text-align:right;padding-right:50px'>Grand Total (RM)   </th>
+                        <th width="30%" style='text-align:center'>View</th>
                     </tr>
                     <?php
                     $customer = $_SESSION['customer'];
                     $db = new OrdersDB();
                     $results = $db->retrieveCustomerOrders($customer->getCustID());
                     $index = 1;
-                    foreach ($results as $rows) {
-                        $orderID = $rows['orderID'];
-                        $orderDate = $rows['orderDate'];
+                    foreach ($results as $row) {
+                        $orderID = $row['orderID'];
+                        $orderDate = $row['orderDate'];
+                        $grandTotal = $row['grandTotal'];
                         echo "<form action='viewSalesOrder.php' method='post'>";
                         echo "<input type='hidden' value='$orderID' name='orderID'/>";
-                        echo "<tr><td>$index</td>"
-                        . "<td>$orderID</td>"
-                        . "<td>$orderDate</td>"
-                        . "<td><input type='submit' name='viewOrder' value='View Sales Order' class='btn grey darken-2'/></tr></form>";
+                        echo "<tr><td width='10%' style='text-align:center'>$index</td>"
+                        . "<td width='15%' style='text-align:center'>$orderID</td>"
+                        . "<td width='25%' style='text-align:center'>$orderDate</td>"
+                        . "<td width='25%'  style='text-align:right;padding-right:50px'>".number_format($grandTotal, 2, ".", ",")."</td>"
+                        . "<td style='text-align:center'><input type='submit' name='viewOrder' value='View Sales Order' class='btn grey darken-2'/></tr></form>";
                         $index++;
                     }
 
