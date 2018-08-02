@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2018 at 08:41 AM
+-- Generation Time: Aug 02, 2018 at 01:55 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -62,8 +62,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`custID`, `custType`, `custName`, `custEmail`, `creditLimit`, `creditBalance`, `creditStatus`) VALUES
-(1001, 1, 'Alex', 'abc@gmail.com', 0, 0, 1),
-(1002, 2, 'Steve', 'def@gmail.com', 1000, 1000, 1),
+(1001, 1, 'Alex', 'alex@gmail.com', 0, 0, 1),
+(1002, 2, 'Steve', 'steve@hotmail.com', 1000, 850, 1),
 (1003, 2, 'Jake', 'jake@gmail.com', 500, 0, 0);
 
 -- --------------------------------------------------------
@@ -82,6 +82,29 @@ CREATE TABLE `orderdetails` (
   `totalAmount` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`orderID`, `productID`, `name`, `description`, `price`, `quantity`, `totalAmount`) VALUES
+(1001, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 5, 15),
+(1001, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 99, 297),
+(1001, 10007, 'Aconitum', 'Bounquet - 10', 40, 81, 3240),
+(1001, 10010, 'Sweeter Bloom', 'Mother Day', 40, 5, 200),
+(1002, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 99, 297),
+(1002, 10008, 'Bergenia', 'Bounquet - 10', 40, 81, 3240),
+(1002, 10010, 'Sweeter Bloom', 'Mother Day', 40, 820, 32800),
+(1003, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 287, 861),
+(1004, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 55, 165),
+(1005, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 50, 150),
+(1005, 10010, 'Sweeter Bloom', 'Mother Day', 40, 5, 200),
+(1006, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 1, 3),
+(1006, 10010, 'Sweeter Bloom', 'Mother Day', 40, 1, 40),
+(1007, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 50, 150),
+(1008, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 20, 60),
+(1009, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 2, 6),
+(1009, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 55, 165);
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +121,21 @@ CREATE TABLE `orders` (
   `shipTime` time NOT NULL,
   `grandTotal` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderID`, `orderDate`, `custID`, `shipMethod`, `shipAddress`, `shipDate`, `shipTime`, `grandTotal`) VALUES
+(1001, '2018-08-01', 1001, 2, '123, Jalan Abc, Taman DEF, 52100 Kepong', '2018-08-05', '12:30:00', 3752),
+(1002, '2018-08-01', 1001, 2, '1230943, Jalan GGGGG, Taman ZZZZZ', '2018-08-05', '08:00:00', 36337),
+(1003, '2018-08-01', 1001, 1, '-', '2018-08-05', '08:00:00', 861),
+(1004, '2018-08-01', 1001, 1, '-', '2018-08-06', '08:00:00', 165),
+(1005, '2018-08-02', 1001, 1, '-', '2018-08-05', '12:00:00', 350),
+(1006, '2018-08-02', 1001, 2, '12, Jalan DDD', '2018-08-06', '08:00:00', 43),
+(1007, '2018-08-02', 1002, 1, '-', '2018-08-08', '08:00:00', 150),
+(1008, '2018-08-02', 1001, 1, '-', '2018-08-05', '08:00:00', 60),
+(1009, '2018-08-02', 1001, 1, '-', '2018-08-05', '08:00:00', 171);
 
 -- --------------------------------------------------------
 
