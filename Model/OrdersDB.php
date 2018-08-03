@@ -9,9 +9,9 @@ require "Database.php";
  */
 
 /**
- * Description of order
+ * Description of OrdersDB
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  */
 class OrdersDB {
 
@@ -51,6 +51,18 @@ class OrdersDB {
         try {
             $db = $this->db;
             $sql = "SELECT * from customer WHERE custID = $custID";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            print $e->getMessage();
+        }
+    }
+
+    function retrieveCustomerWithPW($custID, $password) {
+        try {
+            $db = $this->db;
+            $sql = "SELECT * from customer WHERE custID = $custID AND password = '$password'";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);

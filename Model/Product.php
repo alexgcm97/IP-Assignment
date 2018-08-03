@@ -7,9 +7,9 @@
  */
 
 /**
- * Description of catalog
+ * Description of Product
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  */
 class Product {
 

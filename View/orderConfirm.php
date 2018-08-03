@@ -5,9 +5,9 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!--
- * Description of orderPage
+ * Description of orderConfirm
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  *-->
 <html>
     <head>

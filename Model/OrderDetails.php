@@ -7,9 +7,9 @@
  */
 
 /**
- * Description of orderDetails
+ * Description of OrderDetails
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  */
 class OrderDetails {
 

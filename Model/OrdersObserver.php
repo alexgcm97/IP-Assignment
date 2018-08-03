@@ -6,9 +6,9 @@
  * and open the template in the editor.
  */
 /**
- * Description of order
+ * Description of OrdersObserver
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  */
 
 abstract class AbstractObserver {

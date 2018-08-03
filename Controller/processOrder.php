@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Description of order
+ * Description of processOrder
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  */
 function processOrder() {
 // put your code here

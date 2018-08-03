@@ -7,7 +7,7 @@ and open the template in the editor.
 <!--
  * Description of orderPage
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  *-->
 
 <html>
@@ -23,7 +23,7 @@ and open the template in the editor.
             // session isn't started
             startSession();
         }
-        if (empty($_SESSION['customer']->getCustID())) {
+        if (empty($_SESSION['customer']->getCustID()) || empty($_SESSION['customer']->getPassword())) {
             header("Location: ../View/index.php?err=1");
         } else {
             $order = $_SESSION['order'];

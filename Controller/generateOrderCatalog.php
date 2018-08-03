@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Description of order
+ * Description of generateOrderCatalog
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  */
 function generateCatalog() {
 

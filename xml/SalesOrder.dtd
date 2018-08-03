@@ -10,6 +10,11 @@ and open the template in the editor.
     PUBLIC ID  : -//vendor//vocabulary//EN
     SYSTEM ID  : http://server/path/__NAME__
 -->
+<!--
+ * Description of SalesOrder.dtd
+ *
+ * @author Goh Chun Ming
+ *-->
 
 <!-- TODO define your own vocabulary/syntax. Example follows:  -->
 <!ELEMENT SalesOrder (orderID, orderDate, shipDate, shipTime, shipMethod, to, product+, grandTotal )>

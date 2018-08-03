@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2018 at 01:55 PM
+-- Generation Time: Aug 03, 2018 at 05:41 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -49,6 +49,7 @@ INSERT INTO `catalog` (`catalogID`, `date`) VALUES
 
 CREATE TABLE `customer` (
   `custID` int(11) NOT NULL,
+  `password` varchar(20) COLLATE utf8_bin NOT NULL,
   `custType` int(11) NOT NULL,
   `custName` varchar(40) COLLATE utf8_bin NOT NULL,
   `custEmail` varchar(30) COLLATE utf8_bin NOT NULL,
@@ -61,10 +62,10 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`custID`, `custType`, `custName`, `custEmail`, `creditLimit`, `creditBalance`, `creditStatus`) VALUES
-(1001, 1, 'Alex', 'alex@gmail.com', 0, 0, 1),
-(1002, 2, 'Steve', 'steve@hotmail.com', 1000, 850, 1),
-(1003, 2, 'Jake', 'jake@gmail.com', 500, 0, 0);
+INSERT INTO `customer` (`custID`, `password`, `custType`, `custName`, `custEmail`, `creditLimit`, `creditBalance`, `creditStatus`) VALUES
+(1001, 'abc123', 1, 'Alex', 'alex@gmail.com', 0, 0, 1),
+(1002, 'def123', 2, 'Steve', 'steve@hotmail.com', 1000, 850, 1),
+(1003, '123456', 2, 'Jake', 'jake@gmail.com', 500, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,8 @@ INSERT INTO `orderdetails` (`orderID`, `productID`, `name`, `description`, `pric
 (1007, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 50, 150),
 (1008, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 20, 60),
 (1009, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 2, 6),
-(1009, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 55, 165);
+(1009, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 55, 165),
+(1010, 10004, 'Bergenia', '1 unit, Monthly Sales', 3, 55, 165);
 
 -- --------------------------------------------------------
 
@@ -135,7 +137,8 @@ INSERT INTO `orders` (`orderID`, `orderDate`, `custID`, `shipMethod`, `shipAddre
 (1006, '2018-08-02', 1001, 2, '12, Jalan DDD', '2018-08-06', '08:00:00', 43),
 (1007, '2018-08-02', 1002, 1, '-', '2018-08-08', '08:00:00', 150),
 (1008, '2018-08-02', 1001, 1, '-', '2018-08-05', '08:00:00', 60),
-(1009, '2018-08-02', 1001, 1, '-', '2018-08-05', '08:00:00', 171);
+(1009, '2018-08-02', 1001, 1, '-', '2018-08-05', '08:00:00', 171),
+(1010, '2018-08-03', 1001, 2, '123, Jalan Abc, Taman DEF, 52100 Kepong', '2018-08-06', '08:00:00', 165);
 
 -- --------------------------------------------------------
 

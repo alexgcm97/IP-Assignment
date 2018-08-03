@@ -7,9 +7,9 @@
  */
 
 /**
- * Description of orderCatalog
+ * Description of generateSalesOrder
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  */
 require '../Model/OrdersDB.php';
 require '../Model/Orders.php';

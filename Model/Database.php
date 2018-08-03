@@ -1,9 +1,10 @@
 <?php
 
-/*
- * Mysql database class - only one connection alowed
+/**
+ * Description of Database
+ *
+ * @author Goh Chun Ming
  */
-
 class Database {
 
     protected static $instance;

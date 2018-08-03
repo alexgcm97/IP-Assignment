@@ -7,9 +7,9 @@
  */
 
 /**
- * Description of order
+ * Description of Orders
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  */
 require '../Model/OrderDetails.php';
 require 'OrdersObserver.php';

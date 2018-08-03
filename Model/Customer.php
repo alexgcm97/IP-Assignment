@@ -7,15 +7,15 @@
  */
 
 /**
- * Description of customer
+ * Description of Customer
  *
- * @author Chun Ming
+ * @author Goh Chun Ming
  */
 class Customer {
 
     //put your code here
 
-    private $custID, $custType, $custName, $custEmail, $creditLimit, $creditBalance, $creditStatus;
+    private $custID, $custType, $custName, $custEmail, $creditLimit, $creditBalance, $creditStatus, $password;
 
     function __construct($custID, $custType, $custName, $custEmail, $creditLimit, $creditBalance, $creditStatus) {
         $this->custID = $custID;
@@ -81,6 +81,14 @@ class Customer {
 
     function setCreditStatus($creditStatus) {
         $this->creditStatus = $creditStatus;
+    }
+
+    function getPassword() {
+        return $this->password;
+    }
+
+    function setPassword($password) {
+        $this->password = $password;
     }
 
 }
