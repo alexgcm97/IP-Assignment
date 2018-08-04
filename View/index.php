@@ -23,9 +23,14 @@ and open the template in the editor.
         <?php
 // put your code here
         if (isset($_GET['err'])) {
-            echo '<script type="text/javascript">alert("Invalid Customer ID & Password.");</script>';
-        } elseif (isset($_GET['errNo'])) {
-            echo '<script type="text/javascript">alert("You have finished up your monthly credit limit.");</script>';
+            switch ($_GET['err']) {
+                case 1:
+                    echo '<script type="text/javascript">alert("Invalid Customer ID & Password.");</script>';
+                    break;
+                case 2:
+                    echo '<script type="text/javascript">alert("You have finished up your monthly credit limit.");</script>';
+                    break;
+            }
         }
         session_start();
         $_SESSION = array();

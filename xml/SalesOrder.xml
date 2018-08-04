@@ -2,47 +2,23 @@
 <!DOCTYPE SalesOrder SYSTEM "SalesOrder.dtd">
 <?xml-stylesheet type="text/xsl" href="SalesOrder.xsl"?>
 <SalesOrder>
-  <orderID>1001</orderID>
+  <orderID>1003</orderID>
   <orderDate>01 August 2018</orderDate>
   <shipDate>05 August 2018</shipDate>
-  <shipTime>12:30 pm</shipTime>
-  <shipMethod>2</shipMethod>
+  <shipTime>08:00 am</shipTime>
+  <shipMethod>1</shipMethod>
   <to>
     <custName>Alex</custName>
     <custEmail>alex@gmail.com</custEmail>
-    <shipAddress>123, Jalan Abc, Taman DEF, 52100 Kepong</shipAddress>
+    <shipAddress>-</shipAddress>
   </to>
   <product>
     <no>1</no>
     <name>Anemone</name>
     <description>1 unit, Monthly Sales</description>
     <price>3</price>
-    <quantity>5</quantity>
-    <totalAmount>15</totalAmount>
+    <quantity>287</quantity>
+    <totalAmount>861</totalAmount>
   </product>
-  <product>
-    <no>2</no>
-    <name>Bellflower</name>
-    <description>1 unit, Monthly Sales</description>
-    <price>3</price>
-    <quantity>99</quantity>
-    <totalAmount>297</totalAmount>
-  </product>
-  <product>
-    <no>3</no>
-    <name>Aconitum</name>
-    <description>Bounquet - 10</description>
-    <price>40</price>
-    <quantity>81</quantity>
-    <totalAmount>3240</totalAmount>
-  </product>
-  <product>
-    <no>4</no>
-    <name>Sweeter Bloom</name>
-    <description>Mother Day</description>
-    <price>40</price>
-    <quantity>5</quantity>
-    <totalAmount>200</totalAmount>
-  </product>
-  <grandTotal>3752</grandTotal>
+  <grandTotal>861</grandTotal>
 </SalesOrder>

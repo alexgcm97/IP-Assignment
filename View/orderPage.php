@@ -30,7 +30,7 @@ and open the template in the editor.
             $customer = $_SESSION['customer'];
             $creditStatus = $customer->getCreditStatus();
             if ($creditStatus == false) {
-                header("Location: ../View/index.php?errNo=1");
+                header("Location: ../View/index.php?err=2");
             }
         }
         if (isset($_POST['viewOrder'])) {

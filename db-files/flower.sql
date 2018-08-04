@@ -64,7 +64,7 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`custID`, `password`, `custType`, `custName`, `custEmail`, `creditLimit`, `creditBalance`, `creditStatus`) VALUES
 (1001, 'abc123', 1, 'Alex', 'alex@gmail.com', 0, 0, 1),
-(1002, 'def123', 2, 'Steve', 'steve@hotmail.com', 1000, 850, 1),
+(1002, 'def123', 2, 'Steve', 'steve@hotmail.com', 2000, 1500, 1),
 (1003, '123456', 2, 'Jake', 'jake@gmail.com', 500, 0, 0);
 
 -- --------------------------------------------------------
