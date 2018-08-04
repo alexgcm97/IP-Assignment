@@ -30,17 +30,23 @@ class OrdersObserver extends AbstractObserver {
     private $grandTotal;
 
     public function __construct() {
-        
+        $this->grandTotal = 0;
     }
 
     public function update(AbstractSubject $subject) {
-        $grandTotal = 0;
         foreach ($subject->getAllOD() as $od) {
-            $grandTotal += $od->getTotalAmount();
+            $this->setGrandTotal($this->getGrandTotal() + $od->getTotalAmount());
         }
-        $subject->setGrandTotal($grandTotal);
+        $subject->setGrandTotal($this->getGrandTotal());
     }
 
+    function getGrandTotal() {
+        return $this->grandTotal;
+    }
+
+    function setGrandTotal($grandTotal) {
+        $this->grandTotal = $grandTotal;
+    }
 }
 
 ?>
