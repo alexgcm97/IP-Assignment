@@ -5,12 +5,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  * Description of OrdersObserver
  *
  * @author Goh Chun Ming
  */
-
 abstract class AbstractObserver {
 
     abstract function update(AbstractSubject $subject_in);
@@ -26,6 +26,8 @@ abstract class AbstractSubject {
 }
 
 class OrdersObserver extends AbstractObserver {
+
+    private $grandTotal;
 
     public function __construct() {
         
