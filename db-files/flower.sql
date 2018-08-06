@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2018 at 05:41 AM
+-- Generation Time: Aug 06, 2018 at 01:38 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -64,7 +64,7 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`custID`, `password`, `custType`, `custName`, `custEmail`, `creditLimit`, `creditBalance`, `creditStatus`) VALUES
 (1001, 'abc123', 1, 'Alex', 'alex@gmail.com', 0, 0, 1),
-(1002, 'def123', 2, 'Steve', 'steve@hotmail.com', 2000, 1500, 1),
+(1002, 'def123', 2, 'Steve', 'steve@hotmail.com', 1000, 793, 1),
 (1003, '123456', 2, 'Jake', 'jake@gmail.com', 500, 0, 0);
 
 -- --------------------------------------------------------
@@ -105,7 +105,15 @@ INSERT INTO `orderdetails` (`orderID`, `productID`, `name`, `description`, `pric
 (1008, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 20, 60),
 (1009, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 2, 6),
 (1009, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 55, 165),
-(1010, 10004, 'Bergenia', '1 unit, Monthly Sales', 3, 55, 165);
+(1010, 10004, 'Bergenia', '1 unit, Monthly Sales', 3, 55, 165),
+(1011, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 33, 99),
+(1012, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 12, 36),
+(1012, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 12, 36),
+(1013, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 34, 102),
+(1014, 10002, 'Anemone', '1 unit, Monthly Sales', 3, 5, 15),
+(1014, 10003, 'Bellflower', '1 unit, Monthly Sales', 3, 11, 33),
+(1015, 10004, 'Bergenia', '1 unit, Monthly Sales', 3, 19, 57),
+(1016, 10010, 'Sweeter Bloom', 'Mother Day', 40, 3, 120);
 
 -- --------------------------------------------------------
 
@@ -129,7 +137,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`orderID`, `orderDate`, `custID`, `shipMethod`, `shipAddress`, `shipDate`, `shipTime`, `grandTotal`) VALUES
-(1001, '2018-08-01', 1001, 2, '123, Jalan Abc, Taman DEF, 52100 Kepong', '2018-08-05', '12:30:00', 3752),
+(1001, '2017-08-01', 1001, 2, '123, Jalan Abc, Taman DEF, 52100 Kepong', '2017-08-05', '12:30:00', 3752),
 (1002, '2018-08-01', 1001, 2, '1230943, Jalan GGGGG, Taman ZZZZZ', '2018-08-05', '08:00:00', 36337),
 (1003, '2018-08-01', 1001, 1, '-', '2018-08-05', '08:00:00', 861),
 (1004, '2018-08-01', 1001, 1, '-', '2018-08-06', '08:00:00', 165),
@@ -138,7 +146,13 @@ INSERT INTO `orders` (`orderID`, `orderDate`, `custID`, `shipMethod`, `shipAddre
 (1007, '2018-08-02', 1002, 1, '-', '2018-08-08', '08:00:00', 150),
 (1008, '2018-08-02', 1001, 1, '-', '2018-08-05', '08:00:00', 60),
 (1009, '2018-08-02', 1001, 1, '-', '2018-08-05', '08:00:00', 171),
-(1010, '2018-08-03', 1001, 2, '123, Jalan Abc, Taman DEF, 52100 Kepong', '2018-08-06', '08:00:00', 165);
+(1010, '2018-08-03', 1001, 2, '123, Jalan Abc, Taman DEF, 52100 Kepong', '2018-08-06', '08:00:00', 165),
+(1011, '2018-08-03', 1001, 1, '-', '2018-08-06', '12:00:00', 99),
+(1012, '2018-08-04', 1001, 2, '123, Jalan Abc, Taman DEF, 52100 Kepong ', '2018-08-06', '14:00:00', 72),
+(1013, '2018-08-04', 1001, 2, '33', '2018-08-07', '08:00:00', 102),
+(1014, '2018-08-06', 1001, 2, '123, ABC', '2018-08-18', '10:00:00', 48),
+(1015, '2018-08-06', 1002, 1, '-', '2018-08-08', '12:00:00', 57),
+(1016, '2018-08-06', 1001, 1, '-', '2018-08-08', '08:00:00', 120);
 
 -- --------------------------------------------------------
 
