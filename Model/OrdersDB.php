@@ -83,6 +83,18 @@ class OrdersDB {
         }
     }
 
+    function retrieveCustomerOrdersWithDate($custID, $date) {
+        try {
+            $db = $this->db;
+            $sql = "SELECT * from customer c, orders o WHERE c.custID = $custID AND o.custID = c.custID AND orderDate LIKE '%$date%'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            print $e->getMessage();
+        }
+    }
+
     function insertOrder($order) {
         try {
             $db = $this->db;
