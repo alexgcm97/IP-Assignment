@@ -47,6 +47,8 @@ and open the template in the editor.
             echo '</form>';
             echo '</div>';
             echo $xslt->transformToXml($doc);
+        } else {
+            header("Location: ../View/index.php");
         }
         ?>
     </body>
