@@ -47,6 +47,7 @@ class OrdersObserver extends AbstractObserver {
     function setGrandTotal($grandTotal) {
         $this->grandTotal = $grandTotal;
     }
+
 }
 
 ?>

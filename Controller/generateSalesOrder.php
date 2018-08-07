@@ -44,13 +44,6 @@ function generateSalesOrder($orderID) {
         $root->removeChild($root->firstChild);
     }
 
-
-    /* foreach ($result as $row) {
-      $customer = new Customer($row['custID'], $row['custName'], null, null, null, null, null);
-      $od = new OrderDetails($row['orderID'], $row['productID'], $row['name'], $row['description'], $row['price'], $row['quantity'], $row['totalAmount']);
-      $order->addODToList($od);
-      } */
-
     $root->appendChild($newNode = $dom->createElement("orderID", $order->getOrderID()));
     $date = $order->getOrderDate();
     $date = date("d F Y", strtotime($date));
