@@ -130,7 +130,7 @@ and open the template in the editor.
                     }
 
                     if (empty($results)) {
-                        echo "<tr><td colspan='4' style='text-align:center'>There are no records.</td></tr>";
+                        echo "<tr><td colspan='5' style='text-align:center'>There are no records.</td></tr>";
                     }
                     ?>
                 </table>
