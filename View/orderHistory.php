@@ -102,9 +102,9 @@ and open the template in the editor.
                         $date = $year . "-" . $month;
                     } else {
                         if ($year != 0) {
-                            $date = $year;
+                            $date = $year . "-";
                         } elseif ($month != 0) {
-                            $date = $month;
+                            $date = '-' . $month . '-';
                         }
                     }
                     $customer = $_SESSION['customer'];
