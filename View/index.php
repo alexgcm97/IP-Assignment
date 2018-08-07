@@ -31,7 +31,7 @@ and open the template in the editor.
                     echo '<script type="text/javascript">alert("You have finished up your monthly credit limit.");</script>';
                     break;
                 case 3:
-                    echo '<script type="text/javascript">alert("You have not paid up previous month spending.");</script>';
+                    echo '<script type="text/javascript">alert("You have not paid up previous month credit.");</script>';
                     break;
             }
         }
