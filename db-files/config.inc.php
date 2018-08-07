@@ -19,7 +19,7 @@ $cfg['Servers'][$i]['auth_type'] = 'http';
 $cfg['Servers'][$i]['user'] = 'root';
 $cfg['Servers'][$i]['password'] = '';
 $cfg['Servers'][$i]['extension'] = 'mysqli';
-$cfg['Servers'][$i]['AllowNoPassword'] = true;
+$cfg['Servers'][$i]['AllowNoPassword'] = false;
 $cfg['Lang'] = '';
 
 /* Bind to the localhost ipv4 address and tcp */
